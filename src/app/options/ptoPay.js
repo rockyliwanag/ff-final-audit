@@ -1,0 +1,31 @@
+const ptoPay = [
+    {"name":"Activation Dept"},
+    {"name":"Aligned"},
+    {"name":"Basic NRG"},
+    {"name":"Boundless Energy"},
+    {"name":"Construct Sun"},
+    {"name":"Collective Power"},
+    {"name":"Eco Planet Home"},
+    {"name":"Echelon Solar"},
+    {"name":"Energy Brokers of Nevada"},
+    {"name":"Everlast"},
+    {"name":"Fox Construction"},
+    {"name":"Galaxy Solar"},
+    {"name":"Lightning Communications"},
+    {"name":"Movement Energy"},
+    {"name":"ReThink Energy"},
+    {"name":"S3C Energy"},
+    {"name":"SolarXperts"},
+    {"name":"Solar Pros"},
+    {"name":"Solar Pros Plus"},
+    {"name":"Solari"},
+    {"name":"Sunpeach Solar"},
+    {"name":"Recon Solar"},
+    {"name":"Quad Four"},
+    {"name":"VITL"},
+    {"name":"VITL - Paramount Solar"},
+    {"name":"Vivint"},
+    {"name":"No"}
+];
+
+export default ptoPay;

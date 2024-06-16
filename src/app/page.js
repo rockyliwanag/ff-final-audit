@@ -1,13 +1,14 @@
-import Image from "next/image";
+import UserInfo from "@/components/UserInfo";
 import CE_Notes from "@/components/CE_Notes";
 
 export default function Home() {
+// {console.log("tieIn", tieIn)}
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-      
-        <CE_Notes/>
-        
+      <div className="flex flex-col">
+        <h1 className="text-2xl font-bold">FINAL AUDIT</h1>
+        <UserInfo />
+        <CE_Notes />
       </div>
     </main>
   );
