@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.9",
-    "@pnpm/global-bin-dir": "^3.0.1",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18"
