@@ -1,5 +1,6 @@
 import UserInfo from "@/components/UserInfo";
 import CE_Notes from "@/components/CE_Notes";
+import ProjDetails from "@/components/ProjDetails";
 
 export default function Home() {
 // {console.log("tieIn", tieIn)}
@@ -9,6 +10,7 @@ export default function Home() {
         <h1 className="text-2xl font-bold">FINAL AUDIT</h1>
         <UserInfo />
         <CE_Notes />
+        <ProjDetails />
       </div>
     </main>
   );

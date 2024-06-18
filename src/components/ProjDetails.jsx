@@ -1,14 +1,13 @@
 'use client';
 import { useState, useEffect } from "react";
-import { Input, Radio, Select, Option } from '@material-tailwind/react';
-import Icon from '@/assets/Icon';
+import { Input, Radio } from '@material-tailwind/react';
 import tieIn from '@/app/options/tieIn';
 import attachmentType from '@/app/options/attachmentType';
 import panels from "@/app/options/panels";
 import inverters from "@/app/options/inverters";
 import roofMatetial from "@/app/options/roofMaterial";
 
-const CE_Notes = () => {
+const ProjDetails = () => {
     const [salesMet, setSalesMet] = useState("");
     const [holding, setHolding] = useState("");
     const [numPlanes, setNumPlanes] = useState("");
@@ -27,63 +26,68 @@ const CE_Notes = () => {
     // }, [tieIn])
   return (
     <>
-        <div  className="">
+        <div>
+        <h1>CE Notes</h1>
             <form>
-                <div className="flex flex-row justify-between">
-                    <label className="">Sales Met</label>
-                    <div className='flex flex-row'>
-                        <div>
-                            <Radio className="hover:before:opacity-0" color='green' name='salesMet' label='Yes' icon={<Icon/>}/>
-                        </div>
-                        <div>
-                            <Radio className="hover:before:opacity-0" color='green' name='salesMet' label='No' icon={<Icon/>}/>
-                        </div>
+                <div className='flex flex-row'>
+                    <label>Sales Met</label>
+                    <div>
+                        <Radio type='radio' name='salesMet' value='yes'/>
+                        <label>Yes</label>
                     </div>
-                </div>
-                <div className='flex flex-row justify-between'>
-                    <label>Holding</label> 
-                    <div className="flex flex-row">
-                        <div>
-                            <Radio name='holding' color='green' label='Yes' icon={<Icon/>}/>
-                        </div>
-                        <div>
-                            <Radio name='holding' color='green' label='No' icon={<Icon/>}/>
-                        </div>
+                    <div>
+                        <Radio type='radio' name='salesMet' value='no'/>
+                        <label>No</label>
                     </div>
                 </div>
                 <div className='flex flex-row'>
-                    <Input variant='standard' type='number' name='numPlanes' color="green" label='Number of Planes' placeholder="0"/>
+                    <label>Holding</label> 
+                    <div>
+                        <input type='radio' name='holding' value='yes'/>
+                        <label>Yes</label>
+                    </div>
+                    <div>
+                        <input type='radio' name='holding' value='no'/>
+                        <label>No</label>
+                    </div>
+                </div>
+                <div>
+                    <label>Number of Planes</label> 
+                    <div className="text-black">
+                        <Input variant='standard' type='number' name='numPlanes' placeholder="0"/>
+                    </div>
                 </div>
                 <div className="flex flex-row">
                     <label>Tie In</label>
                     {tieIn.map((item, idx) => {
-                        return (
-                            <div key={idx}>
-                                <Radio name='tieIn' color='green' label={item.method} icon={<Icon/>}/>
-                            </div>
-                        )
+                        return (<div key={idx}>
+                            <input type='radio' name='tieIn' value={item.method}/>
+                            <label>{item.method}</label>
+                        </div>)
                     })} 
                 </div>
                 <div className="flex flex-row">
-                    <Select color='green' variant='standard' label='Attachment'>
+                    <label>Attachment</label>
+                    <select className="text-black">
+                        <option value=''>Select Attachment</option>
                         {attachmentType.map((item, idx) => {
                             return (
-                                <Option key={idx}>{item.type}</Option>
+                                <option key={idx} value={item.type}>{item.type}</option>
                             )
                         })}
-                    </Select>
+                    </select>
                 </div>
                 <div className="flex flex-row">
                     <label>Modules</label>
-                    <Input  variant='standard' className='text-black' type='number' name='modules' placeholder='0'/>
-                    <Select color='green' variant="standard" label='Modules'>
-                        {/* <Option value=''>Select Module</Option> */}
+                    <input className='text-black' type='number' name='modules' placeholder='0'/>
+                    <select className="text-black">
+                        <option value=''>Select Module</option>
                         {panels.map((item, idx) => {
                             return (
-                                <Option key={idx}>{item.type}</Option>
+                                <option key={idx} value={item.type}>{item.type}</option>
                             )
                         })}
-                    </Select>
+                    </select>
                 </div>
                 <div className="flex flex-row">
                     <label>Inverters</label>
@@ -176,4 +180,4 @@ const CE_Notes = () => {
   )
 }
 
-export default CE_Notes
+export default ProjDetails
