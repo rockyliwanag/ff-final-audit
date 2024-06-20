@@ -29,7 +29,7 @@ const CE_Notes = () => {
     <>
         <div className="mt-4">
             <form className="flex flex-col space-y-2">
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between items-center">
                     <Typography variant="h4" color='gray'>Sales Met</Typography>
                     <div className='flex flex-row'>
                         <div>
@@ -40,7 +40,7 @@ const CE_Notes = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-row justify-between'>
+                <div className='flex flex-row justify-between items-center'>
                     <Typography variant="h4" color='gray'>Holding</Typography> 
                     <div className="flex flex-row">
                         <div>
@@ -51,10 +51,13 @@ const CE_Notes = () => {
                         </div>
                     </div>
                 </div>
+                    <div className="">
+                        <Textarea className='' name='holdingNotes' label='Holding Notes'/>
+                    </div>
                 <div className='flex flex-row'>
                     <Input  type='number' name='numPlanes' color="green" label='Number of Planes' placeholder="0"/>
                 </div>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between items-center">
                     <Typography variant="h4" color='gray'>Tie In</Typography>
                     <div className="flex flex-row">
                         {tieIn.map((item, idx) => {
@@ -75,9 +78,9 @@ const CE_Notes = () => {
                         })}
                     </Select>
                 </div>
-                <div className="flex flex-row space-x-2">
+                <div className="flex flex-row space-x-2 items-center">
                 <Typography variant="h4" color='gray'>Module</Typography>
-                    <Input className='text-black' type='number' name='modules' label='Module Qty' placeholder='0'/>
+                    <Input className='w-8' type='number' name='modules' label='Module Qty' placeholder='0'/>
                     <Select color='green' variant="standard" label='Select Module'>
                         {panels.map((item, idx) => {
                             return (
@@ -86,10 +89,10 @@ const CE_Notes = () => {
                         })}
                     </Select>
                 </div>
-                <div className="flex flex-row space-x-2">
-                    <Typography variant="h4" color='gray'>Inverter</Typography>
-                    <Input className='w-10' type='number' name='inverters' label='Inverter Qty' placeholder='0'/>
-                    <Select color="green" variant="standard" label="Select Inverter">
+                <div className="flex flex-row items-center space-x-2">
+                    <Typography className='grow' variant="h4" color='gray'>Inverter</Typography>
+                    <Input className='w-4' type='number' name='inverters' label='Inverter Qty' placeholder='0'/>
+                    <Select className='grow' color="green" variant="standard" label="Select Inverter">
                         {inverters.map((item, idx) => {
                             return (
                                 <Option key={idx} value={item.type}>{item.type}</Option>
@@ -97,7 +100,7 @@ const CE_Notes = () => {
                         })}
                     </Select>
                 </div>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between items-center">
                     <Typography variant="h4" color='gray'>POI</Typography>
                     <div className="flex flex-row">
                         {tieIn.map((item, idx) => {
@@ -109,21 +112,20 @@ const CE_Notes = () => {
                         })} 
                     </div>
                 </div>
-                <div className="flex flex-row justify-between">
+                <div className="">
                     <Textarea className='' name='poiNotes' label='POI Notes'/>
                 </div>
-                <div className="flex flex-row">
+                <div className="flex flex-row items-center">
                     <Typography variant="h4" color='gray'>Roof Material</Typography>
                     <Select color='green' variant='standard' label='Select Material'>
                         {roofMatetial.map((item, idx) => {
-                            {console.log("item", item)}
                             return (
                                 <Option key={idx} value={item.type}>{item.type}</Option>
                             )
                         })}
                     </Select>
                 </div>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between items-center">
                     <Typography variant="h4" color='gray'>Roof Work</Typography>
                     <div className='flex flex-row'>
                         <div>
@@ -134,7 +136,7 @@ const CE_Notes = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between items-center">
                     <Typography variant="h4" color='gray'>Electrical Work</Typography>
                     <div className='flex flex-row'>
                         <div>
@@ -145,7 +147,7 @@ const CE_Notes = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between items-center">
                     <Typography variant="h4" color='gray'>Trench</Typography>
                     <div className='flex flex-row'>
                         <div>
@@ -156,7 +158,7 @@ const CE_Notes = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between items-center">
                     <Typography variant="h4" color='gray'>Tree Trimming</Typography>
                     <div className='flex flex-row'>
                         <div>
@@ -167,7 +169,7 @@ const CE_Notes = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between items-center">
                     <Typography variant="h4" color='gray'>Ground Mount</Typography>
                     <div className='flex flex-row'>
                         <div>
