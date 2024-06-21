@@ -41,6 +41,7 @@ const ProjDetails = () => {
                     <Popover placement="bottom">
                         <PopoverHandler>
                         <Input
+                            color="green"
                             label="Submission Date"
                             onChange={() => null}
                             value={date ? format(date, "PPP") : ""}
@@ -55,25 +56,25 @@ const ProjDetails = () => {
                             className="border-0"
                             classNames={{
                             caption: "flex justify-center py-2 mb-4 relative items-center",
-                            caption_label: "text-sm font-medium text-gray-900",
+                            caption_label: "text-sm font-medium text-amber-900",
                             nav: "flex items-center",
                             nav_button:
-                                "h-6 w-6 bg-transparent hover:bg-blue-gray-50 p-1 rounded-md transition-colors duration-300",
+                                "h-6 w-6 bg-transparent hover:bg-blue-amber-50 p-1 rounded-md transition-colors duration-300",
                             nav_button_previous: "absolute left-1.5",
                             nav_button_next: "absolute right-1.5",
                             table: "w-full border-collapse",
-                            head_row: "flex font-medium text-gray-900",
+                            head_row: "flex font-medium text-amber-900",
                             head_cell: "m-0.5 w-9 font-normal text-sm",
                             row: "flex w-full mt-2",
-                            cell: "text-gray-600 rounded-md h-9 w-9 text-center text-sm p-0 m-0.5 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-gray-900/20 [&:has([aria-selected].day-outside)]:text-white [&:has([aria-selected])]:bg-gray-900/50 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                            cell: "text-amber-600 rounded-md h-9 w-9 text-center text-sm p-0 m-0.5 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-amber-900/20 [&:has([aria-selected].day-outside)]:text-white [&:has([aria-selected])]:bg-amber-900/50 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
                             day: "h-9 w-9 p-0 font-normal",
                             day_range_end: "day-range-end",
                             day_selected:
-                                "rounded-md bg-gray-900 text-white hover:bg-gray-900 hover:text-white focus:bg-gray-900 focus:text-white",
-                            day_today: "rounded-md bg-gray-200 text-gray-900",
+                                "rounded-md bg-amber-900 text-white hover:bg-amber-900 hover:text-white focus:bg-amber-900 focus:text-white",
+                            day_today: "rounded-md bg-amber-200 text-amber-900",
                             day_outside:
-                                "day-outside text-gray-500 opacity-50 aria-selected:bg-gray-500 aria-selected:text-gray-900 aria-selected:bg-opacity-10",
-                            day_disabled: "text-gray-500 opacity-50",
+                                "day-outside text-amber-500 opacity-50 aria-selected:bg-amber-500 aria-selected:text-amber-900 aria-selected:bg-opacity-10",
+                            day_disabled: "text-amber-500 opacity-50",
                             day_hidden: "invisible",
                             }}
                             components={{
@@ -89,7 +90,7 @@ const ProjDetails = () => {
                     </Popover>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
-                    <Typography variant="h4" color="gray">PTO Pay</Typography> 
+                    <Typography variant="h5" color="amber">PTO Pay</Typography> 
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='ptoPay' label='Yes' icon={<Icon/>}/>
@@ -100,7 +101,7 @@ const ProjDetails = () => {
                     </div>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
-                    <Typography variant="h4" color="gray">Freedom Advantage</Typography> 
+                    <Typography variant="h5" color="amber">Freedom Advantage</Typography> 
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='freedomAdvantage' label='Yes' icon={<Icon/>}/>
@@ -111,7 +112,7 @@ const ProjDetails = () => {
                     </div>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
-                    <Typography variant="h4" color="gray">Clean Deal</Typography> 
+                    <Typography variant="h5" color="amber">Clean Deal</Typography> 
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='cleanDeal' label='Yes' icon={<Icon/>}/>
@@ -122,7 +123,7 @@ const ProjDetails = () => {
                     </div>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
-                    <Typography variant="h4" color="gray">Lead Source</Typography> 
+                    <Typography variant="h5" color="amber">Lead Source</Typography> 
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='leadSource' label='Dealer' icon={<Icon/>}/>
@@ -133,7 +134,7 @@ const ProjDetails = () => {
                     </div>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
-                    <Typography variant="h4" color="gray">Smart Home</Typography> 
+                    <Typography variant="h5" color="amber">Smart Home</Typography> 
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='smartHome' label='Yes' icon={<Icon/>}/>
@@ -144,7 +145,7 @@ const ProjDetails = () => {
                     </div>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
-                    <Typography variant="h4" color="gray">Battery</Typography> 
+                    <Typography variant="h5" color="amber">Battery</Typography> 
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='battery' label='Yes' value={true} icon={<Icon/>} onChange={handleChange}/>

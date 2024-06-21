@@ -4,4 +4,4 @@ const inverterGroup = [
     {"group":"Tesla"}
 ];
 
-export default batteries;
+export default inverterGroup;

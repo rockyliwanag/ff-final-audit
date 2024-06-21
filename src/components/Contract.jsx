@@ -1,14 +1,17 @@
 'use client';
 import { useState } from "react";
 import { 
-    Typography, 
+    Typography,
+    Textarea,
     Input,
     Select,
     Option,
     Radio
 } from '@material-tailwind/react';
-
+import Icon from '@/assets/Icon';
 import moduleGroup from "@/app/options/moduleGroup";
+import inverterGroup from "@/app/options/inverterGroup";
+import mountingType from "@/app/options/mountingType";
 
 const Contract = () => {
     const [contractName, setContractName] = useState("");
@@ -102,6 +105,33 @@ const Contract = () => {
                             )
                         })}
                     </Select>
+                </div>
+                <div className="flex flex-row space-x-2">
+                    <Select 
+                        className="w-full"
+                        color="green" 
+                        variant="standard" 
+                        label="Select Inverter Group"
+                    >
+                        {inverterGroup.map((item, idx) => {
+                            return(
+                                <Option key={idx} value={item.group}>{item.group}</Option>
+                            )
+                        })}
+                    </Select>
+                </div>
+                <div className='flex flex-row  justify-between items-center'>
+                    <Typography variant="h5" color="amber">Mounting Type</Typography> 
+                    <div className='flex flex-row'>
+                        {mountingType.map((file, idx) => (
+                            <div key={idx} className='text-white'>
+                                <Radio  color='green' name='mountingType' value={file.type} label={<Typography color='white'>{file.type}</Typography>} icon={<Icon/>} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="">
+                    <Textarea color='green' variant='outlined' name='additionalComponents' label={/*<Typography color='white'>*/'Additional Components'/*</Typography>*/}/>
                 </div>
             </div>
         </form>

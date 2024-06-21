@@ -16,7 +16,7 @@ const CR_Drive = () => {
                     <Typography variant="h3" className="w-full">CR Drive</Typography>
                 </div>
                 <div className='flex flex-row justify-between items-center'>
-                    <Typography variant="h4" color="gray">Files</Typography> 
+                    <Typography variant="h5" color="amber">Files</Typography> 
                     <div className='flex flex-row'>
                         {crFiles.map((file, index) => (
                         <div key={index}>

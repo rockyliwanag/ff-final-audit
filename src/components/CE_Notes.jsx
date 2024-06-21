@@ -30,40 +30,40 @@ const CE_Notes = () => {
         <div className="mt-4">
             <form className="flex flex-col space-y-2">
                 <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h4" color='gray'>Sales Met</Typography>
+                    <Typography variant="h5" color='amber' className="text-white">Sales Met</Typography>
                     <div className='flex flex-row'>
                         <div>
-                            <Radio color='green' name='salesMet' label='Yes' icon={<Icon/>}/>
+                            <Radio color='green' name='salesMet' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
                         </div>
                         <div>
-                            <Radio color='green' name='salesMet' label='No' icon={<Icon/>}/>
+                            <Radio color='green' name='salesMet' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
                         </div>
                     </div>
                 </div>
                 <div className='flex flex-row justify-between items-center'>
-                    <Typography variant="h4" color='gray'>Holding</Typography> 
+                    <Typography variant="h5" color='amber'>Holding</Typography> 
                     <div className="flex flex-row">
                         <div>
-                            <Radio name='holding' color='green' label='Yes' icon={<Icon/>}/>
+                            <Radio name='holding' color='green' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
                         </div>
                         <div>
-                            <Radio name='holding' color='green' label='No' icon={<Icon/>}/>
+                            <Radio name='holding' color='green' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
                         </div>
                     </div>
                 </div>
                     <div className="">
-                        <Textarea className='' name='holdingNotes' label='Holding Notes'/>
+                        <Textarea color='green' name='holdingNotes' label='Holding Notes'/>
                     </div>
                 <div className='flex flex-row'>
-                    <Input  type='number' name='numPlanes' color="green" label='Number of Planes' placeholder="0"/>
+                    <Input  type='number' name='numPlanes' className="text-white" color="green" label='Number of Planes' placeholder="0"/>
                 </div>
                 <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h4" color='gray'>Tie In</Typography>
+                    <Typography variant="h5" color='amber'>Tie In</Typography>
                     <div className="flex flex-row">
                         {tieIn.map((item, idx) => {
                             return (
                                 <div key={idx}>
-                                    <Radio name='tieIn' color='green' label={item.method} icon={<Icon/>}/>
+                                    <Radio name='tieIn' color='green' label={<Typography className="text-white font-medium">{item.method}</Typography>} icon={<Icon/>}/>
                                 </div>
                             )
                         })} 
@@ -79,44 +79,44 @@ const CE_Notes = () => {
                     </Select>
                 </div>
                 <div className="flex flex-row space-x-2 items-center">
-                <Typography variant="h4" color='gray'>Module</Typography>
-                    <Input className='w-8' type='number' name='modules' label='Module Qty' placeholder='0'/>
+                <Typography variant="h5" color='amber'>Module</Typography>
+                    <Input className='text-white' type='number' color='green' name='modules' label='Module Qty' placeholder='0'/>
                     <Select color='green' variant="standard" label='Select Module'>
                         {panels.map((item, idx) => {
                             return (
-                                <Option key={idx} value={item.type}>{item.type}</Option>
+                                <Option key={idx} className='text-white' value={item.type}>{item.type}</Option>
                             )
                         })}
                     </Select>
                 </div>
                 <div className="flex flex-row items-center space-x-2">
-                    <Typography className='grow' variant="h4" color='gray'>Inverter</Typography>
-                    <Input className='w-4' type='number' name='inverters' label='Inverter Qty' placeholder='0'/>
+                    <Typography className='grow' variant="h5" color='amber'>Inverter</Typography>
+                    <Input className='text-white' color='green'  type='number' name='inverters' label='Inverter Qty' placeholder='0'/>
                     <Select className='grow' color="green" variant="standard" label="Select Inverter">
                         {inverters.map((item, idx) => {
                             return (
-                                <Option key={idx} value={item.type}>{item.type}</Option>
+                                <Option key={idx} className='text-white' value={item.type}>{item.type}</Option>
                             )
                         })}
                     </Select>
                 </div>
                 <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h4" color='gray'>POI</Typography>
+                    <Typography variant="h5" color='amber'>POI</Typography>
                     <div className="flex flex-row">
                         {tieIn.map((item, idx) => {
                             return (
                                 <div key={idx} className="self-end">
-                                    <Radio name='poi' color='green' label={item.method} icon={<Icon/>}/>
+                                    <Radio name='poi' color='green' label={<Typography className='text-white'>{item.method}</Typography>} icon={<Icon/>}/>
                                 </div>
                             )
                         })} 
                     </div>
                 </div>
                 <div className="">
-                    <Textarea className='' name='poiNotes' label='POI Notes'/>
+                    <Textarea color='green' name='poiNotes' label='POI Notes'/>
                 </div>
                 <div className="flex flex-row items-center">
-                    <Typography variant="h4" color='gray'>Roof Material</Typography>
+                    <Typography variant="h5" color='amber'>Roof Material</Typography>
                     <Select color='green' variant='standard' label='Select Material'>
                         {roofMatetial.map((item, idx) => {
                             return (
@@ -126,7 +126,7 @@ const CE_Notes = () => {
                     </Select>
                 </div>
                 <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h4" color='gray'>Roof Work</Typography>
+                    <Typography variant="h5" color='amber'>Roof Work</Typography>
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='roofWork' label='Yes' icon={<Icon/>}/>
@@ -137,7 +137,7 @@ const CE_Notes = () => {
                     </div>
                 </div>
                 <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h4" color='gray'>Electrical Work</Typography>
+                    <Typography variant="h5" color='amber'>Electrical Work</Typography>
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='electricWork' label='Yes' icon={<Icon/>}/>
@@ -148,7 +148,7 @@ const CE_Notes = () => {
                     </div>
                 </div>
                 <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h4" color='gray'>Trench</Typography>
+                    <Typography variant="h5" color='amber'>Trench</Typography>
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='trench' label='Yes' icon={<Icon/>}/>
@@ -159,7 +159,7 @@ const CE_Notes = () => {
                     </div>
                 </div>
                 <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h4" color='gray'>Tree Trimming</Typography>
+                    <Typography variant="h5" color='amber'>Tree Trimming</Typography>
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='treeTrim' label='Yes' icon={<Icon/>}/>
@@ -170,7 +170,7 @@ const CE_Notes = () => {
                     </div>
                 </div>
                 <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h4" color='gray'>Ground Mount</Typography>
+                    <Typography variant="h5" color='amber'>Ground Mount</Typography>
                     <div className='flex flex-row'>
                         <div>
                             <Radio color='green' name='groundMount' label='Yes' icon={<Icon/>}/>

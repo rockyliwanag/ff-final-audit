@@ -4,6 +4,7 @@ import CE_Notes from "@/components/CE_Notes";
 import ProjDetails from "@/components/ProjDetails";
 import CR_Drive from "@/components/CR_Drive";
 import Contract from "@/components/Contract";
+import SiteCapture from "@/components/SiteCapture";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <ProjDetails />
         <CR_Drive />
         <Contract />
+        <SiteCapture />
       </div>
     </main>
   );
