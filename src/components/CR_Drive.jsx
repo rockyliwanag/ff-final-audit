@@ -20,7 +20,7 @@ const CR_Drive = () => {
                     <div className='flex flex-row'>
                         {crFiles.map((file, index) => (
                         <div key={index}>
-                            <Checkbox color='green' name={file.type} label={file.type} value={file.type}/>
+                            <Checkbox color='green' name={file.type} label={<div className='text-white'>{file.type}</div>} value={file.type}/>
                         </div>
                         ))}
                     </div>

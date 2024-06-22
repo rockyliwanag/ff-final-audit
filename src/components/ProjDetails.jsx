@@ -42,7 +42,8 @@ const ProjDetails = () => {
                         <PopoverHandler>
                         <Input
                             color="green"
-                            label="Submission Date"
+                            className="text-white"
+                            label={<div className='text-green-300'>Submission Date</div>}
                             onChange={() => null}
                             value={date ? format(date, "PPP") : ""}
                         />
@@ -92,33 +93,33 @@ const ProjDetails = () => {
                 <div className='flex flex-row  justify-between items-center'>
                     <Typography variant="h5" color="amber">PTO Pay</Typography> 
                     <div className='flex flex-row'>
-                        <div>
-                            <Radio color='green' name='ptoPay' label='Yes' icon={<Icon/>}/>
+                    <div>
+                            <Radio color='green' name='ptoPay' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
                         </div>
                         <div>
-                            <Radio color='green' name='ptoPay' label='No' icon={<Icon/>}/>
+                            <Radio color='green' name='ptoPay' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
                         </div>
                     </div>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
                     <Typography variant="h5" color="amber">Freedom Advantage</Typography> 
                     <div className='flex flex-row'>
-                        <div>
-                            <Radio color='green' name='freedomAdvantage' label='Yes' icon={<Icon/>}/>
+                    <div>
+                            <Radio color='green' name='freedomAdvantage' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
                         </div>
                         <div>
-                            <Radio color='green' name='freedomAdvantage' label='No' icon={<Icon/>}/>
+                            <Radio color='green' name='freedomAdvantage' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
                         </div>
                     </div>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
                     <Typography variant="h5" color="amber">Clean Deal</Typography> 
                     <div className='flex flex-row'>
-                        <div>
-                            <Radio color='green' name='cleanDeal' label='Yes' icon={<Icon/>}/>
+                    <div>
+                            <Radio color='green' name='cleanDeal' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
                         </div>
                         <div>
-                            <Radio color='green' name='cleanDeal' label='No' icon={<Icon/>}/>
+                            <Radio color='green' name='cleanDeal' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
                         </div>
                     </div>
                 </div>
@@ -126,21 +127,21 @@ const ProjDetails = () => {
                     <Typography variant="h5" color="amber">Lead Source</Typography> 
                     <div className='flex flex-row'>
                         <div>
-                            <Radio color='green' name='leadSource' label='Dealer' icon={<Icon/>}/>
+                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">Dealer</Typography>} icon={<Icon/>}/>
                         </div>
                         <div>
-                            <Radio color='green' name='leadSource' label='Freedom' icon={<Icon/>}/>
+                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">Freedom</Typography>} icon={<Icon/>}/>
                         </div>
                     </div>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
                     <Typography variant="h5" color="amber">Smart Home</Typography> 
                     <div className='flex flex-row'>
-                        <div>
-                            <Radio color='green' name='smartHome' label='Yes' icon={<Icon/>}/>
+                    <div>
+                            <Radio color='green' name='smartHome' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
                         </div>
                         <div>
-                            <Radio color='green' name='smartHome' label='No' icon={<Icon/>}/>
+                            <Radio color='green' name='smartHome' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
                         </div>
                     </div>
                 </div>
@@ -148,21 +149,21 @@ const ProjDetails = () => {
                     <Typography variant="h5" color="amber">Battery</Typography> 
                     <div className='flex flex-row'>
                         <div>
-                            <Radio color='green' name='battery' label='Yes' value={true} icon={<Icon/>} onChange={handleChange}/>
+                            <Radio color='green' name='battery' label={<Typography className="text-white font-medium">Yes</Typography>} value={true} icon={<Icon/>} onChange={handleChange}/>
                         </div>
                         <div>
-                            <Radio color='green' name='battery' label='No' value={false} icon={<Icon/>} onChange={handleChange}/>
+                            <Radio color='green' name='battery' label={<Typography className="text-white font-medium">No</Typography>} value={false} icon={<Icon/>} onChange={handleChange}/>
                         </div>
                     </div>
                 </div>
                 <div >
                     {isTrueSet &&
                     <div className="flex flex-row space-x-2">
-                        <Input className='w-4' color='green' type='number' name='battery' label='Battery Qty' placeholder='0'/>
-                        <Select className='w-full' color="green" variant="standard" label="Select Battery">
+                        <Input className='w-4' color='green' type='number' name='battery' label={<div className='text-green-300'>Battery Qty</div>}  placeholder='0'/>
+                        <Select className='w-full' color="green" variant="standard" label={<div className='text-green-300'>Select Battery</div>}>
                             {batteries.map((item, idx) => {
                                 return (
-                                    <Option key={idx} value={item.type}>{item.type}</Option>
+                                    <Option key={idx} value={item.type}>{<div className="text-gray-500">{item.type}</div>}</Option>
                                 )
                             })}
                         </Select>
@@ -170,10 +171,10 @@ const ProjDetails = () => {
                     }
                 </div>
                 <div className="">
-                    <Input className='w-4' variant='standard' color='green' name='utility' label='Utility'/>
+                    <Input className='text-white' variant='standard' color='green' name='utility' label={<div className='text-green-300'>Utility</div>} />
                 </div>
                 <div className="">
-                    <Textarea color='green' name='notes' label='Additional Notes'/>
+                    <Textarea color='green' className='text-white' name='notes' label={<div className='text-green-300'>Additional Notes</div>} />
                 </div>
             </form>
         </div>

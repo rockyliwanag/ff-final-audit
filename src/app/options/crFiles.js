@@ -1,8 +1,8 @@
 const crFiles = [
     {"type":"Shader"},
-    {"type":"Choice2"},
-    {"type":"Choice3"},
-    {"type":"Choice4"},
+    {"type":"EPC-Custom"},
+    {"type":"Inputs"},
+    {"type":"Design-Plan"},
 ];
 
 export default crFiles;

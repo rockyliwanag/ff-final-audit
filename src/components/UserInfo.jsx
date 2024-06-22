@@ -21,7 +21,8 @@ const UserInfo = () => {
                             className="text-white"
                             type='text' 
                             name='customer' 
-                            label='Customer Name'
+                            label={<div className='text-green-300'>Customer Name</div>}
+                            labelProps={{className:'color-green-300'}}
                             color="green"
                             value={customer} 
                             onChange={(e) => setCustomer(e.target.value)}
@@ -34,7 +35,7 @@ const UserInfo = () => {
                             className="text-white"
                             type='text' 
                             name='address'
-                            label='Address'
+                            label={<div className='text-green-300'>Address</div>}
                             color="green"
                             value={address} 
                             onChange={(e) => setAddress(e.target.value)}
