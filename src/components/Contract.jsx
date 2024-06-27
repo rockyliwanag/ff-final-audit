@@ -6,19 +6,36 @@ import {
     Input,
     Select,
     Option,
-    Radio
+    Radio,
 } from '@material-tailwind/react';
+import { useGlobalContext } from '@/app/contexts/globalContext';
+
 import Icon from '@/assets/Icon';
+import PasteButton from "./PasteButton";
 import moduleGroup from "@/app/options/moduleGroup";
 import inverterGroup from "@/app/options/inverterGroup";
 import mountingType from "@/app/options/mountingType";
 
 const Contract = () => {
-    const [contractName, setContractName] = useState("");
-    const [contractAddress, setContractAddress] = useState("");
-    const [systemSize, setSystemSize] = useState("");
-    const [systemCost, setSystemCost] = useState("");
-    const [firstProduction, setFirstProduction] = useState("");
+    const { customer, address, setCustomer,
+        contractName, setContractName,
+        contractAddress, setContractAddress,
+        systemSize, setSystemSize,
+        systemCost, setSystemCost,
+        firstProduction, setFirstProduction
+    } = useGlobalContext();
+
+
+    // handler to paste from clipboard to the contractName input field
+    const handlePaste = async (fill) => {
+
+        if (navigator.clipboard && navigator.clipboard.readText) {
+            const text = await navigator.clipboard.readText();
+            fill(text);
+        } else {
+            console.log("Clipboard readText is not supported in this browser.");
+        }
+    }
     
   return (
     <>
@@ -27,9 +44,8 @@ const Contract = () => {
                 <Typography variant="h3" className="w-full">Contract</Typography>
             </div>
             <div className='flex flex-col space-y-2'>
-                <div>
+                <div className="flex flex-row space-x-2">
                     <Input 
-                        // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
                         type='text' 
@@ -39,10 +55,10 @@ const Contract = () => {
                         value={contractName} 
                         onChange={(e) => setContractName(e.target.value)}
                     />
+                    <PasteButton onPaste={() => handlePaste(setContractName)} />
                 </div>
-                <div>
+                <div className="flex flex-row space-x-2">
                     <Input 
-                        // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
                         type='text' 
@@ -52,10 +68,10 @@ const Contract = () => {
                         value={contractAddress} 
                         onChange={(e) => setContractAddress(e.target.value)}
                     />
+                    <PasteButton onPaste={() => handlePaste(setContractAddress)} />
                 </div>
-                <div>
+                <div className="flex flex-row space-x-2">
                     <Input 
-                        // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
                         type='number' 
@@ -65,10 +81,10 @@ const Contract = () => {
                         value={systemSize} 
                         onChange={(e) => setSystemSize(e.target.value)}
                     />
+                    <PasteButton onPaste={() => handlePaste(setSystemSize)} />
                 </div>
-                <div>
+                <div className="flex flex-row space-x-2">
                     <Input 
-                        // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
                         type='number' 
@@ -78,10 +94,10 @@ const Contract = () => {
                         value={systemCost} 
                         onChange={(e) => setSystemCost(e.target.value)}
                     />
+                    <PasteButton onPaste={() => handlePaste(setSystemCost)} />
                 </div>
-                <div>
+                <div className="flex flex-row space-x-2">
                     <Input 
-                        // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
                         type='number' 
@@ -91,6 +107,7 @@ const Contract = () => {
                         value={firstProduction} 
                         onChange={(e) => setFirstProduction(e.target.value)}
                     />
+                    <PasteButton onPaste={() => handlePaste(setFirstProduction)} />
                 </div>
                 <div className="flex flex-row space-x-2">
                     <Select 

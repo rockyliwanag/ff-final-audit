@@ -1,6 +1,7 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Input, Radio, Select, Option, Typography, Textarea } from '@material-tailwind/react';
+import { useGlobalContext } from '@/app/contexts/globalContext';
 import Icon from '@/assets/Icon';
 import tieIn from '@/app/options/tieIn';
 import attachmentType from '@/app/options/attachmentType';
@@ -13,18 +14,9 @@ const CE_Notes = () => {
     const [holding, setHolding] = useState("");
     const [numPlanes, setNumPlanes] = useState("");
     const [tieInCheckboxes, setTieInCheckboxes] = useState("");
-    // console.log("tieIn", tieIn)
 
-    // useEffect(() => {
-    //     setTieInCheckboxes(tieIn.map((item, idx) => {
-    //         return (
-    //             <div key={idx}>
-    //                 <input type='checkbox' name={item} value={item}/>
-    //                 <label>{item}</label>
-    //             </div>
-    //         )
-    //     }))
-    // }, [tieIn])
+    const { customer, address } = useGlobalContext();
+
   return (
     <>
         <div className="mt-4">
