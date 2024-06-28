@@ -2,7 +2,7 @@
 import { set } from 'date-fns';
 import { createContext, useContext, useState, useEffect } from 'react'
 
-const globalContext = createContext({});
+const GlobalContext = createContext({});
 
 export const GlobalProvider = ({ children }) => {
 
@@ -57,6 +57,6 @@ export const GlobalProvider = ({ children }) => {
 }
 
 export const useGlobalContext = () => {
-    return useContext(globalContext)
+    return useContext(GlobalContext)
 }
 
