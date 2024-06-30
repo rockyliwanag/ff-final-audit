@@ -4,7 +4,7 @@ import PasteIcon from '@/assets/PasteIcon';
 
 const PasteButton = ({ onPaste }) => {
   return (
-    <IconButton variant='filled' color='green' type='button' size='sm' onClick={onPaste}><i className='fas fa-paste'/><PasteIcon/></IconButton>
+    <Button variant='text' color='green' type='button' size='sm' onClick={onPaste}>Paste</Button>
   );
 };
 

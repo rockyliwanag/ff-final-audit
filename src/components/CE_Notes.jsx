@@ -47,7 +47,7 @@ const CE_Notes = () => {
                         <Textarea color='green' className='text-white' name='holdingNotes' label={<div className="text-green-300 font-medium">Holding Notes</div>}/>
                     </div>
                 <div className='flex flex-row'>
-                    <Input  type='text' name='numPlanes' className="text-white" color="green" label={<div className="text-green-300 font-medium">text of Planes</div>} placeholder="0"/>
+                    <Input  type='text' name='numPlanes' className="text-white" color="green" label={<div className="text-green-300 font-medium"># of Planes</div>} placeholder="0"/>
                 </div>
                 <div className="flex flex-row justify-between items-center">
                     <Typography variant="h5" color='amber'>Tie In</Typography>
