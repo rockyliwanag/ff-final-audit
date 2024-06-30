@@ -47,7 +47,7 @@ const CE_Notes = () => {
                         <Textarea color='green' className='text-white' name='holdingNotes' label={<div className="text-green-300 font-medium">Holding Notes</div>}/>
                     </div>
                 <div className='flex flex-row'>
-                    <Input  type='number' name='numPlanes' className="text-white" color="green" label={<div className="text-green-300 font-medium">Number of Planes</div>} placeholder="0"/>
+                    <Input  type='text' name='numPlanes' className="text-white" color="green" label={<div className="text-green-300 font-medium">text of Planes</div>} placeholder="0"/>
                 </div>
                 <div className="flex flex-row justify-between items-center">
                     <Typography variant="h5" color='amber'>Tie In</Typography>
@@ -72,7 +72,7 @@ const CE_Notes = () => {
                 </div>
                 <div className="flex flex-row space-x-2 items-center">
                 <Typography variant="h5" color='amber'>Module</Typography>
-                    <Input className='text-white' type='number' color='green' name='modules' label={<div className='text-green-300'>Module Qty</div>} placeholder='0'/>
+                    <Input className='text-white' type='text' color='green' name='modules' label={<div className='text-green-300'>Module Qty</div>} placeholder='0'/>
                     <Select className='text-white' color='green' variant="standard" label={<div className='text-green-300'>Select Module</div>}>
                         {panels.map((item, idx) => {
                             return (
@@ -83,7 +83,7 @@ const CE_Notes = () => {
                 </div>
                 <div className="flex flex-row items-center space-x-2">
                     <Typography className='grow' variant="h5" color='amber'>Inverter</Typography>
-                    <Input className='text-white' color='green'  type='number' name='inverters' label={<div className='text-green-300'>Inverter Qty</div>}  placeholder='0'/>
+                    <Input className='text-white' color='green'  type='text' name='inverters' label={<div className='text-green-300'>Inverter Qty</div>}  placeholder='0'/>
                     <Select className='grow' color="green" variant="standard" label={<div className='text-green-300'>Select Inverter</div>}>
                         {inverters.map((item, idx) => {
                             return (

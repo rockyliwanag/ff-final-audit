@@ -32,7 +32,7 @@ const Aurora = () => {
                         // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
-                        type='number' 
+                        type='text' 
                         name='panelQty' 
                         label={<div className="text-green-300 font-medium">Panel Qty</div>}
                         color="green"
@@ -59,7 +59,7 @@ const Aurora = () => {
                         // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
-                        type='number' 
+                        type='text' 
                         name='systemSize' 
                         label={<div className="text-green-300 font-medium">System Size</div>}
                         color="green"
@@ -72,7 +72,7 @@ const Aurora = () => {
                         // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
-                        type='number' 
+                        type='text' 
                         name='firstProduction' 
                         label={<div className="text-green-300 font-medium">Production</div>}
                         color="green"

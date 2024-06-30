@@ -159,7 +159,7 @@ const ProjDetails = () => {
                 <div >
                     {isTrueSet &&
                     <div className="flex flex-row space-x-2">
-                        <Input className='w-4' color='green' type='number' name='battery' label={<div className='text-green-300'>Battery Qty</div>}  placeholder='0'/>
+                        <Input className='w-4' color='green' type='text' name='battery' label={<div className='text-green-300'>Battery Qty</div>}  placeholder='0'/>
                         <Select className='w-full' color="green" variant="standard" label={<div className='text-green-300'>Select Battery</div>}>
                             {batteries.map((item, idx) => {
                                 return (

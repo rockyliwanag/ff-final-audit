@@ -47,7 +47,7 @@ const Finance = () => {
                         // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
-                        type='number' 
+                        type='text' 
                         name='loanAmount' 
                         label={<div className="text-green-300 font-medium">Loan Amount</div>}
                         color="green"
@@ -73,7 +73,7 @@ const Finance = () => {
                         // className='text-black p-1' 
                         variant='standard'
                         className="text-white"
-                        type='number' 
+                        type='text' 
                         name='dealerFee' 
                         label={<div className="text-green-300 font-medium">Dealer Fee</div>}
                         color="green"
@@ -81,18 +81,30 @@ const Finance = () => {
                         onChange={(e) => setDealerFee(e.target.value)}
                     />
                 </div>
-                <div className='flex flex-row  justify-between items-center'>
-                    <Typography variant="h5" color="amber">Mounting Type</Typography> 
+                <div className="flex flex-row justify-between items-center">
+                    <Typography variant="h5" color='amber'>Loan Status</Typography>
                     <div className='flex flex-row'>
-                        {mountingType.map((file, idx) => (
-                            <div key={idx} className='text-white'>
-                                <Radio  color='green' name='mountingType' value={file.type} label={<Typography color='white'>{file.type}</Typography>} icon={<Icon/>} />
-                            </div>
-                        ))}
+                    <div>
+                            <Radio name='loanStatus' color='green' label={<Typography className="text-white font-medium">Approved</Typography>} icon={<Icon/>}/>
+                        </div>
+                        <div>
+                            <Radio name='loanStatus' color='green' label={<Typography className="text-white font-medium">Pending</Typography>} icon={<Icon/>}/>
+                        </div>
+                        <div>
+                            <Radio name='loanStatus' color='green' label={<Typography className="text-white font-medium">Rejected</Typography>} icon={<Icon/>}/>
+                        </div>
                     </div>
                 </div>
-                <div className="">
-                    <Textarea className='text-white' color='green' variant='outlined' name='additionalComponents' label={<div className="text-green-300 font-medium">Additional Components</div>}/>
+                <div className="flex flex-row justify-between items-center">
+                    <Typography variant="h5" color='amber'>ACH</Typography>
+                    <div className='flex flex-row'>
+                    <div>
+                            <Radio name='ACH' color='green' label={<Typography className="text-white font-medium">Remove</Typography>} icon={<Icon/>}/>
+                        </div>
+                        <div>
+                            <Radio name='ACH' color='green' label={<Typography className="text-white font-medium">Leave</Typography>} icon={<Icon/>}/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

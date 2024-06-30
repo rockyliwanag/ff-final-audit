@@ -74,7 +74,7 @@ const Contract = () => {
                     <Input 
                         variant='standard'
                         className="text-white"
-                        type='number' 
+                        type='text' 
                         name='systemSize' 
                         label={<div className="text-green-300 font-medium">System Size</div>}
                         color="green"
@@ -87,7 +87,7 @@ const Contract = () => {
                     <Input 
                         variant='standard'
                         className="text-white"
-                        type='number' 
+                        type='text' 
                         name='systemCost' 
                         label={<div className="text-green-300 font-medium">System Cost</div>}
                         color="green"
@@ -100,7 +100,7 @@ const Contract = () => {
                     <Input 
                         variant='standard'
                         className="text-white"
-                        type='number' 
+                        type='text' 
                         name='firstProduction' 
                         label={<div className="text-green-300 font-medium">First Year Production</div>}
                         color="green"
