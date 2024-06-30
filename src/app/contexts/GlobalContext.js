@@ -18,11 +18,6 @@ export const GlobalProvider = ({ children }) => {
     const [systemCost, setSystemCost] = useState("");
     const [firstProduction, setFirstProduction] = useState("");
 
-    // useEffect(() => {
-    //     console.log('customer:', customer, 'address:', address)
-    // }, [customer, address])
-  
-
     return (
         <GlobalContext.Provider value={
             {

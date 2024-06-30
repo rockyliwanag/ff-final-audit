@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
     Typography,
     Textarea,
@@ -24,6 +24,25 @@ const Contract = () => {
         systemCost, setSystemCost,
         firstProduction, setFirstProduction
     } = useGlobalContext();
+
+    const contractForm = {
+        contractName: contractName,
+        contractAddress: contractAddress,
+        systemSize: systemSize,
+        systemCost: systemCost,
+        firstProduction: firstProduction
+    }
+
+    useEffect(() => {
+        //add useEffect to delay the state update of handlePaste
+        setContractName(contractForm.contractName);
+        setContractAddress(contractForm.contractAddress);
+        setSystemSize(contractForm.systemSize);
+        setSystemCost(contractForm.systemCost);
+        setFirstProduction(contractForm.firstProduction);
+    }, [contractForm, setContractName, setContractAddress, setSystemSize, setSystemCost, setFirstProduction])
+
+
 
 
     // handler to paste from clipboard to the contractName input field
