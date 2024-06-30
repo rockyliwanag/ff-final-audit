@@ -18,7 +18,7 @@ export default function Home() {
       <GlobalProvider>
         <div className="flex flex-col">
           <h1 className="text-2xl font-bold">FINAL AUDIT</h1>
-          <Link href="#">Reset</Link>
+          <Link href="/">Reset</Link>
           <UserInfo />
           <CE_Notes />
           <ProjDetails />
