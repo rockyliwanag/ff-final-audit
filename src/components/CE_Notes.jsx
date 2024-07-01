@@ -64,7 +64,7 @@ const CE_Notes = () => {
                     <Typography variant="h5" color='amber'>Tie In</Typography>
                     {/*if ls_address shows 'FL' or 'TX' and the tieIn method is 'LST' then show the chip*/}
                     {lstFee && tie_In === 'LST' && <Chip color='green' className='text-white rounded-full' size='lg' value='$0.00' />}
-                    {!lstFee && tie_In === 'LST' && <Chip color='red' className='text-white rounded-full' size='lg' value='$450' />}
+                    {ls_address && !lstFee && tie_In === 'LST' &&  <Chip color='red' className='text-white rounded-full' size='lg' value='$450' />}
                     <div className="flex flex-row">
                         {tieIn.map((item, idx) => {
                             return (
