@@ -61,7 +61,9 @@ const CE_Notes = () => {
                 {/*Number of Planes*/}
                 <div className='flex flex-row space-x-2'>
                     <Input  type='text' name='numPlanes' className="text-white" color="green" label={<div className="text-green-300 font-medium">Number of Planes</div>} placeholder="0" onChange={(e) => setNumPlanes(e.target.value)}/>
-                    <Typography variant='h6'>Multiplanes x {parseInt(numPlanes) > 2 && parseInt(numPlanes) - 2}</Typography> 
+                    <div>
+                        <Typography variant='h6'>{parseInt(numPlanes) > 2 && <Chip color='green' className='text-white rounded-full' size='sm' value={'Multiplanes x' + (parseInt(numPlanes) - 2)} />}</Typography> 
+                    </div>
                 </div>
 
                 {/*Adders*/}
