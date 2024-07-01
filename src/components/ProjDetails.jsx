@@ -13,6 +13,8 @@ import { Input,
 import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { useGlobalContext } from "@/app/contexts/globalContext";
+import PasteButton from "./PasteButton";
 import Icon from '@/assets/Icon';
 import batteries from "@/app/options/batteries";
 
@@ -20,6 +22,17 @@ import batteries from "@/app/options/batteries";
 const ProjDetails = () => {
     const [battery, setBattery] = useState(null);
     const [date, setDate] = useState(new Date());
+    const { utility, setUtility } = useGlobalContext();
+
+    const handlePaste = async (fill) => {
+
+        if (navigator.clipboard && navigator.clipboard.readText) {
+            const text = await navigator.clipboard.readText();
+            fill(text);
+        } else {
+            console.log("Clipboard readText is not supported in this browser.");
+        }
+    }
 
     useEffect(() => {
         
@@ -169,8 +182,17 @@ const ProjDetails = () => {
                     </div>
                     }
                 </div>
-                <div className="">
-                    <Input className='text-white' variant='standard' color='green' name='utility' label={<div className='text-green-300'>Utility</div>} />
+                <div className="flex flex-row space-x-2">
+                    <Input 
+                        className='text-white' 
+                        variant='standard' 
+                        color='green'
+                        type='text'
+                        name='utility' 
+                        label={<div className='text-green-300'>Utility</div>}
+                        value={utility} 
+                        onChange={(e) => setUtility(e.target.value)}/>
+                    <PasteButton onPaste={() => handlePaste(setUtility)} />
                 </div>
                 <div className="">
                     <Textarea color='green' className='text-white' name='notes' label={<div className='text-green-300'>Additional Notes</div>} />

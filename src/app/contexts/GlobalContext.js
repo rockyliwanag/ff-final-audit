@@ -20,6 +20,7 @@ export const GlobalProvider = ({ children }) => {
     const [numPlanes, setNumPlanes] = useState("");
     const [holding, setHolding] = useState("");
     const [tie_In, setTie_In] = useState("");
+    const [utility, setUtility] = useState("");
 
     return (
         <GlobalContext.Provider value={
@@ -51,7 +52,9 @@ export const GlobalProvider = ({ children }) => {
                 holding,
                 setHolding,
                 tie_In,
-                setTie_In
+                setTie_In,
+                utility,
+                setUtility
             }
         
         }>
