@@ -9,8 +9,6 @@ import Aurora from "@/components/Aurora";
 import Finance from "@/components/Finance";
 
 import { GlobalProvider } from "@/app/contexts/globalContext";
-import Link from "next/link";
-// import { Button } from "@material-tailwind/react";
 
 export default function Home() {
   return (
@@ -18,7 +16,6 @@ export default function Home() {
       <GlobalProvider>
         <div className="flex flex-col">
           <h1 className="text-2xl font-bold">FINAL AUDIT</h1>
-          <Link href="/">Reset</Link>
           <UserInfo />
           <CE_Notes />
           <ProjDetails />
@@ -28,7 +25,6 @@ export default function Home() {
           <Aurora />
           <Finance />
         </div>
-        {/* <Button color="green" ripple="light" ><a href='#'>Reset</a></Button> */}
       </GlobalProvider>
     </main>
   );

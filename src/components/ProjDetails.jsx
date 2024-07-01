@@ -29,7 +29,6 @@ const ProjDetails = () => {
 
     const handleChange = (e) => {
         setBattery(e.target.value)
-        console.log("Batt",isTrueSet)
     }
     
   return (
