@@ -10,7 +10,7 @@ import inverters from "@/app/options/inverters";
 import roofMatetial from "@/app/options/roofMaterial";
 
 const CE_Notes = () => {
-    const { customer, address, numPlanes, setNumPlanes, holding, setHolding, tie_In, setTie_In } = useGlobalContext();
+    const { customer, address, numPlanes, setNumPlanes, holding, setHolding, tie_In, setTie_In, roofWork, setRoofWork, electrical, setElectrical } = useGlobalContext();
     const regex = /\b(?:AL|AK|AZ|AR|CA|CO|CT|DE|DC|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|PR|RI|SC|SD|TN|TX|UT|VT|VA|VI|WA|WV|WI|WY)\b/i
     const ls_address = address.match(regex)
     {/* if the ls_address is 'FL' or 'TX' then show lstFee as true else false*/}
@@ -152,26 +152,36 @@ const CE_Notes = () => {
                     <Typography variant="h5" color='amber'>Roof Work</Typography>
                     <div className='flex flex-row'>
                         <div>
-                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
+                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setRoofWork('yes')}/>
                         </div>
                         <div>
-                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
+                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setRoofWork('no')}/>
                         </div>
                     </div>
                 </div>
+                {roofWork === 'yes' &&
+                    <div className="">
+                        <Textarea color='green' className='text-white' name='holdingNotes' label={<div className="text-green-300 font-medium">Roof Work Notes</div>}/>
+                    </div>
+                }
 
                 {/*Electrical Work*/}
                 <div className="flex flex-row justify-between items-center">
                     <Typography variant="h5" color='amber'>Electrical Work</Typography>
                     <div className='flex flex-row'>
                         <div>
-                            <Radio color='green' name='electricWork' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
+                            <Radio color='green' name='electricWork' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setElectrical('yes')}/>
                         </div>
                         <div>
-                            <Radio color='green' name='electricWork' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
+                            <Radio color='green' name='electricWork' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setElectrical('no')}/>
                         </div>
                     </div>
                 </div>
+                {electrical === 'yes' &&
+                    <div className="">
+                        <Textarea color='green' className='text-white' name='holdingNotes' label={<div className="text-green-300 font-medium">Electrical Notes</div>}/>
+                    </div>
+                }
 
                 {/*Trench*/}
                 <div className="flex flex-row justify-between items-center">
