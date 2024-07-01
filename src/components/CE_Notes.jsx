@@ -134,14 +134,14 @@ const CE_Notes = () => {
 
                 {/*POI Notes*/}
                 <div className="">
-                    <Textarea color='green' name='poiNotes' label={<div className='text-green-300'>POI Notes</div>} />
+                    <Textarea className='text-white' color='green' name='poiNotes' label={<div className='text-green-300'>POI Notes</div>} />
                 </div>
                 <div className="flex flex-row items-center">
                     <Typography variant="h5" color='amber'>Roof Material</Typography>
-                    <Select color='green' variant='standard' label={<div className='text-green-300'>Select Material</div>}>
+                    <Select color='green' variant='standard' className='text-white' label={<div className='text-green-300'>Select Material</div>}>
                         {roofMatetial.map((item, idx) => {
                             return (
-                                <Option key={idx} value={item.type}>{<div className="text-gray-500">{item.type}</div>}</Option>
+                                <Option key={idx} className='text-white' value={item.type}>{<div className="text-gray-500">{item.type}</div>}</Option>
                             )
                         })}
                     </Select>
