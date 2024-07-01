@@ -52,6 +52,12 @@ const CE_Notes = () => {
                     </div>
                 }
 
+                {/*Roof Pitch*/}
+                <div className='flex flex-row space-x-2'>
+                    <Input  type='text' name='roofPitch' className="text-white" color="green" label={<div className="text-green-300 font-medium">Roof Pitch</div>} placeholder="0" onChange={(e) => setRoofPitch(e.target.value)}/>
+                    {/* <Typography variant='h6'>Multiplanes x {parseInt(numPlanes) > 2 && parseInt(numPlanes) - 2}</Typography>  */}
+                </div>
+
                 {/*Number of Planes*/}
                 <div className='flex flex-row space-x-2'>
                     <Input  type='text' name='numPlanes' className="text-white" color="green" label={<div className="text-green-300 font-medium">Number of Planes</div>} placeholder="0" onChange={(e) => setNumPlanes(e.target.value)}/>
@@ -136,6 +142,8 @@ const CE_Notes = () => {
                 <div className="">
                     <Textarea className='text-white' color='green' name='poiNotes' label={<div className='text-green-300'>POI Notes</div>} />
                 </div>
+
+                {/*Roof Material*/}
                 <div className="flex flex-row items-center">
                     <Typography variant="h5" color='amber'>Roof Material</Typography>
                     <Select color='green' variant='standard' className='text-white' label={<div className='text-green-300'>Select Material</div>}>
@@ -145,6 +153,19 @@ const CE_Notes = () => {
                             )
                         })}
                     </Select>
+                </div>
+
+                {/*2x2 Truss*/}
+                <div className="flex flex-row justify-between items-center">
+                    <Typography variant="h5" color='amber'>2x2 Truss</Typography>
+                    <div className='flex flex-row'>
+                        <div>
+                            <Radio color='green' name='truss' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
+                        </div>
+                        <div>
+                            <Radio color='green' name='truss' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
+                        </div>
+                    </div>
                 </div>
 
                 {/*Roof Work*/}

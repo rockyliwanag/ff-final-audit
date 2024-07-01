@@ -133,6 +133,9 @@ const ProjDetails = () => {
                         <div>
                             <Radio color='green' name='cleanDeal' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
                         </div>
+                        <div>
+                            <Radio color='green' name='cleanDeal' label={<Typography className="text-white font-medium">Pending</Typography>} icon={<Icon/>}/>
+                        </div>
                     </div>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
