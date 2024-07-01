@@ -11,7 +11,7 @@ import roofMatetial from "@/app/options/roofMaterial";
 
 const CE_Notes = () => {
     const { customer, address, numPlanes, setNumPlanes, holding, setHolding, tie_In, setTie_In } = useGlobalContext();
-    const regex = /\b(?:AL|AK|AZ|AR|CA|CO|CT|DE|DC|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|PR|RI|SC|SD|TN|TX|UT|VT|VA|VI|WA|WV|WI|WY)\b/
+    const regex = /\b(?:AL|AK|AZ|AR|CA|CO|CT|DE|DC|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|PR|RI|SC|SD|TN|TX|UT|VT|VA|VI|WA|WV|WI|WY)\b/i
     const ls_address = address.match(regex)
     {/* if the ls_address is 'FL' or 'TX' then show lstFee as true else false*/}
     const lstFee = ls_address && (ls_address[0] === 'FL' || ls_address[0] === 'TX') ? true : false
@@ -56,6 +56,11 @@ const CE_Notes = () => {
                 <div className='flex flex-row space-x-2'>
                     <Input  type='text' name='numPlanes' className="text-white" color="green" label={<div className="text-green-300 font-medium">Number of Planes</div>} placeholder="0" onChange={(e) => setNumPlanes(e.target.value)}/>
                     <Typography variant='h6'>Multiplanes x {parseInt(numPlanes) > 2 && parseInt(numPlanes) - 2}</Typography> 
+                </div>
+
+                {/*Adders*/}
+                <div className="">
+                    <Textarea color='green' className='text-white' name='ceAdders' label={<div className="text-green-300 font-medium">CE Adders</div>}/>
                 </div>
 
                 {/*Tie In*/}
