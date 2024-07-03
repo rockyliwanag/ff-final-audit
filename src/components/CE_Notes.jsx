@@ -44,7 +44,7 @@ const CE_Notes = () => {
                         </div>
                     </div>
                 </div>
-                {salesMet === 'yes' &&
+                {salesMet === 'no' &&
                     <div className="">
                         <Textarea color='green' className='text-white' name='salesMetNotes' label={<div className="text-green-300 font-medium">Reason not meeting sales preference</div>}/>
                     </div>
