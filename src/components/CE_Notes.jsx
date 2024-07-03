@@ -183,41 +183,6 @@ const CE_Notes = () => {
                     </div>
                 </div>
 
-                {/*Roof Work*/}
-                <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h5" color='amber'>Roof Work</Typography>
-                    <div className='flex flex-row'>
-                        <div>
-                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setRoofWork('yes')}/>
-                        </div>
-                        <div>
-                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setRoofWork('no')}/>
-                        </div>
-                    </div>
-                </div>
-                {roofWork === 'yes' &&
-                    <div className="">
-                        <Textarea color='green' className='text-white' name='holdingNotes' label={<div className="text-green-300 font-medium">Roof Work Notes</div>}/>
-                    </div>
-                }
-
-                {/*Electrical Work*/}
-                <div className="flex flex-row justify-between items-center">
-                    <Typography variant="h5" color='amber'>Electrical Work</Typography>
-                    <div className='flex flex-row'>
-                        <div>
-                            <Radio color='green' name='electricWork' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setElectrical('yes')}/>
-                        </div>
-                        <div>
-                            <Radio color='green' name='electricWork' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setElectrical('no')}/>
-                        </div>
-                    </div>
-                </div>
-                {electrical === 'yes' &&
-                    <div className="">
-                        <Textarea color='green' className='text-white' name='holdingNotes' label={<div className="text-green-300 font-medium">Electrical Notes</div>}/>
-                    </div>
-                }
 
                 {/*Trench*/}
                 <div className="flex flex-row justify-between items-center">
@@ -257,6 +222,41 @@ const CE_Notes = () => {
                         </div>
                     </div>
                 </div>
+                {/*Roof Work*/}
+                <div className="flex flex-row justify-between items-center">
+                    <Typography variant="h5" color='amber'>Roof Work</Typography>
+                    <div className='flex flex-row'>
+                        <div>
+                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setRoofWork('yes')}/>
+                        </div>
+                        <div>
+                            <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setRoofWork('no')}/>
+                        </div>
+                    </div>
+                </div>
+                {roofWork === 'yes' &&
+                    <div className="">
+                        <Textarea color='green' className='text-white' name='holdingNotes' label={<div className="text-green-300 font-medium">Roof Work Notes</div>}/>
+                    </div>
+                }
+
+                {/*Electrical Work*/}
+                <div className="flex flex-row justify-between items-center">
+                    <Typography variant="h5" color='amber'>Electrical Work</Typography>
+                    <div className='flex flex-row'>
+                        <div>
+                            <Radio color='green' name='electricWork' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setElectrical('yes')}/>
+                        </div>
+                        <div>
+                            <Radio color='green' name='electricWork' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setElectrical('no')}/>
+                        </div>
+                    </div>
+                </div>
+                {electrical === 'yes' &&
+                    <div className="">
+                        <Textarea color='green' className='text-white' name='holdingNotes' label={<div className="text-green-300 font-medium">Electrical Notes</div>}/>
+                    </div>
+                }
             </form>
         </div>
     </>
