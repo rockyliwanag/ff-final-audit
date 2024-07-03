@@ -10,19 +10,19 @@ import inverters from "@/app/options/inverters";
 import roofMatetial from "@/app/options/roofMaterial";
 
 const CE_Notes = () => {
-    const { address, numPlanes, setNumPlanes, holding, setHolding, tie_In, setTie_In, roofWork, setRoofWork, electrical, setElectrical } = useGlobalContext();
+    const { address, numPlanes, setNumPlanes, holding, setHolding, tie_In, setTie_In, roofWork, setRoofWork, electrical, setElectrical, pitch, setRoofPitch } = useGlobalContext();
 
     //Filter the address to get the State
     const allStateRegex = /\b(?:AL|AK|AZ|AR|CA|CO|CT|DE|DC|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|PR|RI|SC|SD|TN|TX|UT|VT|VA|VI|WA|WV|WI|WY)\b/i
     const ls_address = address.match(allStateRegex)
     
-    //Filter to determine the steep roof qualification
-    const steep1Regex = /\b(?:AL|AK|AZ|AR|CA|CO|CT|DE|DC)\b/i
+    //Filter to determine the steep roof > 34 qualification
+    const steep1Regex = /\b(?:CT|CO|DE|GA|MA|ME|NC|NH|NJ|NY|IL|OH|PA|RI|SC|TX|VA|VT)\b/i
     const steep1 = address.match(steep1Regex)
     
-    //Filter to determine the steep roof >= 30 above qualification
-    const steep2Regex = /\b(?:AR|CA|CO|CT|DE|DC)\b/i
-    const steep2 = address.match(steep2Regex)
+    // If ls_address is equal to steep1 then show the steepFee as true else false (34)
+    const steepFee34 = ls_address && steep1 && ls_address[0] === steep1[0] ? true : false
+    const steepFee30 = ls_address && steep1 && ls_address[0] === steep1[0] ? false : true
 
     // if the ls_address is 'FL' or 'TX' then show lstFee as true else false
     const lstFee = ls_address && (ls_address[0] === 'FL' || ls_address[0] === 'TX') ? true : false
@@ -66,7 +66,9 @@ const CE_Notes = () => {
                 {/*Roof Pitch*/}
                 <div className='flex flex-row space-x-2'>
                     <Input  type='text' name='roofPitch' className="text-white" color="green" label={<div className="text-green-300 font-medium">Roof Pitch</div>} placeholder="0" onChange={(e) => setRoofPitch(e.target.value)}/>
-                    {/* <Typography variant='h6'>Multiplanes x {parseInt(numPlanes) > 2 && parseInt(numPlanes) - 2}</Typography>  */}
+                    {/* If steepFee is true and pitch is greater than 34 show steep roof chip otherwise if steepFee is false and pitch is greater or equal to 30 show the steep roof chip except when the pitch is below 30, show nothing */}
+                    {steepFee34 && parseInt(pitch) > 34 && <Chip color='green' className='text-white rounded-full' size='sm' value='>34' />}
+                    {steepFee30 && parseInt(pitch) >= 30 && <Chip color='green' className='text-white rounded-full' size='sm' value='>=30' />}
                 </div>
 
                 {/*Number of Planes*/}
