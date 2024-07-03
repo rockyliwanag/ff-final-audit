@@ -10,7 +10,7 @@ import inverters from "@/app/options/inverters";
 import roofMatetial from "@/app/options/roofMaterial";
 
 const CE_Notes = () => {
-    const { address, numPlanes, setNumPlanes, holding, setHolding, tie_In, setTie_In, roofWork, setRoofWork, electrical, setElectrical, pitch, setRoofPitch } = useGlobalContext();
+    const { address, numPlanes, setNumPlanes, holding, setHolding, tie_In, setTie_In, roofWork, setRoofWork, electrical, setElectrical, pitch, setRoofPitch, salesMet, setSalesMet } = useGlobalContext();
 
     //Filter the address to get the State
     const allStateRegex = /\b(?:AL|AK|AZ|AR|CA|CO|CT|DE|DC|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|PR|RI|SC|SD|TN|TX|UT|VT|VA|VI|WA|WV|WI|WY)\b/i
@@ -37,13 +37,18 @@ const CE_Notes = () => {
                     <Typography variant="h5" color='amber'>Sales Met</Typography>
                     <div className='flex flex-row'>
                         <div>
-                            <Radio color='green' name='salesMet' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
+                            <Radio color='green' name='salesMet' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setSalesMet('yes')}/>
                         </div>
                         <div>
-                            <Radio color='green' name='salesMet' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
+                            <Radio color='green' name='salesMet' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setSalesMet('no')}/>
                         </div>
                     </div>
                 </div>
+                {salesMet === 'yes' &&
+                    <div className="">
+                        <Textarea color='green' className='text-white' name='salesMetNotes' label={<div className="text-green-300 font-medium">Reason not meeting sales preference</div>}/>
+                    </div>
+                }
 
                 {/*Holding*/}
                 <div className='flex flex-row justify-between items-center'>

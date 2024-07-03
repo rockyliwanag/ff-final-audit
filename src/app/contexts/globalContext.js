@@ -24,6 +24,7 @@ export const GlobalProvider = ({ children }) => {
     const [roofWork, setRoofWork] = useState("");
     const [electrical, setElectrical] = useState("");
     const [pitch, setRoofPitch] = useState("");
+    const [salesMet, setSalesMet] = useState("");
 
     return (
         <GlobalContext.Provider value={
@@ -63,7 +64,9 @@ export const GlobalProvider = ({ children }) => {
                 electrical,
                 setElectrical,
                 pitch,
-                setRoofPitch
+                setRoofPitch,
+                salesMet,
+                setSalesMet
             }
         
         }>
