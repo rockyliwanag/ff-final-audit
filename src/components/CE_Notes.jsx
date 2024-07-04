@@ -31,6 +31,21 @@ const CE_Notes = () => {
     <>
         <div className="mt-4">
             <form className="flex flex-col space-y-2">
+                {/*Roof Pitch*/}
+                <div className='flex flex-row space-x-2'>
+                    <Input  type='text' name='roofPitch' className="text-white" color="green" label={<div className="text-green-300 font-medium">Roof Pitch</div>} placeholder="0" onChange={(e) => setRoofPitch(e.target.value)}/>
+                    {/* If steepFee is true and pitch is greater than 34 show steep roof chip otherwise if steepFee is false and pitch is greater or equal to 30 show the steep roof chip except when the pitch is below 30, show nothing */}
+                    {steepFee34 && parseInt(pitch) > 34 && <Chip color='green' className='text-white rounded-full' size='sm' value='>34' />}
+                    {steepFee30 && parseInt(pitch) >= 30 && <Chip color='green' className='text-white rounded-full' size='sm' value='>=30' />}
+                </div>
+
+                {/*Number of Planes*/}
+                <div className='flex flex-row space-x-2'>
+                    <Input  type='text' name='numPlanes' className="text-white" color="green" label={<div className="text-green-300 font-medium">Number of Planes</div>} placeholder="0" onChange={(e) => setNumPlanes(e.target.value)}/>
+                    <div>
+                        <Typography variant='h6'>{parseInt(numPlanes) > 2 && <Chip color='green' className='text-white rounded-full' size='sm' value={'Multiplanes x' + (parseInt(numPlanes) - 2)} />}</Typography> 
+                    </div>
+                </div>
 
                 {/*Sales Met*/}
                 <div className="flex flex-row justify-between items-center">
@@ -68,27 +83,6 @@ const CE_Notes = () => {
                     </div>
                 }
 
-                {/*Roof Pitch*/}
-                <div className='flex flex-row space-x-2'>
-                    <Input  type='text' name='roofPitch' className="text-white" color="green" label={<div className="text-green-300 font-medium">Roof Pitch</div>} placeholder="0" onChange={(e) => setRoofPitch(e.target.value)}/>
-                    {/* If steepFee is true and pitch is greater than 34 show steep roof chip otherwise if steepFee is false and pitch is greater or equal to 30 show the steep roof chip except when the pitch is below 30, show nothing */}
-                    {steepFee34 && parseInt(pitch) > 34 && <Chip color='green' className='text-white rounded-full' size='sm' value='>34' />}
-                    {steepFee30 && parseInt(pitch) >= 30 && <Chip color='green' className='text-white rounded-full' size='sm' value='>=30' />}
-                </div>
-
-                {/*Number of Planes*/}
-                <div className='flex flex-row space-x-2'>
-                    <Input  type='text' name='numPlanes' className="text-white" color="green" label={<div className="text-green-300 font-medium">Number of Planes</div>} placeholder="0" onChange={(e) => setNumPlanes(e.target.value)}/>
-                    <div>
-                        <Typography variant='h6'>{parseInt(numPlanes) > 2 && <Chip color='green' className='text-white rounded-full' size='sm' value={'Multiplanes x' + (parseInt(numPlanes) - 2)} />}</Typography> 
-                    </div>
-                </div>
-
-                {/*Adders*/}
-                <div className="">
-                    <Textarea color='green' className='text-white' name='ceAdders' label={<div className="text-green-300 font-medium">CE Adders</div>}/>
-                </div>
-
                 {/*Tie In*/}
                 <div className="flex flex-row justify-between items-center">
                     
@@ -105,6 +99,11 @@ const CE_Notes = () => {
                             )
                         })} 
                     </div>
+                </div>
+
+                {/*Adders*/}
+                <div className="">
+                    <Textarea color='green' className='text-white' name='ceAdders' label={<div className="text-green-300 font-medium">CE Adders</div>}/>
                 </div>
 
                 {/*Attachment*/}

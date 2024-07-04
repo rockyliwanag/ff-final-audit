@@ -103,6 +103,17 @@ const ProjDetails = () => {
                     </Popover>
                 </div>
                 <div className='flex flex-row  justify-between items-center'>
+                    <Typography variant="h5" color="amber">Title Check</Typography> 
+                    <div className='flex flex-row'>
+                    <div>
+                            <Radio color='green' name='titleCheck' label={<Typography className="text-white font-medium">Pass</Typography>} icon={<Icon/>}/>
+                        </div>
+                        <div>
+                            <Radio color='green' name='titleCheck' label={<Typography className="text-white font-medium">Fail</Typography>} icon={<Icon/>}/>
+                        </div>
+                    </div>
+                </div>
+                <div className='flex flex-row  justify-between items-center'>
                     <Typography variant="h5" color="amber">PTO Pay</Typography> 
                     <div className='flex flex-row'>
                     <div>

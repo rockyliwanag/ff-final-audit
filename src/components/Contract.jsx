@@ -7,6 +7,7 @@ import {
     Select,
     Option,
     Radio,
+    Chip
 } from '@material-tailwind/react';
 import { useGlobalContext } from '@/app/contexts/globalContext';
 
@@ -17,7 +18,7 @@ import inverterGroup from "@/app/options/inverterGroup";
 import mountingType from "@/app/options/mountingType";
 
 const Contract = () => {
-    const { customer, address, setCustomer,
+    const { customer, address,
         contractName, setContractName,
         contractAddress, setContractAddress,
         systemSize, setSystemSize,
@@ -25,6 +26,9 @@ const Contract = () => {
         firstProduction, setFirstProduction
     } = useGlobalContext();
 
+    const [isNameValid, setIsNameValid] = useState(true);
+    const [isContractNameBlurred, setIsContractNameBlurred] = useState(false);
+    
     const contractForm = {
         contractName: contractName,
         contractAddress: contractAddress,
@@ -33,6 +37,7 @@ const Contract = () => {
         firstProduction: firstProduction
     }
 
+    
     useEffect(() => {
         //add useEffect to delay the state update of handlePaste
         setContractName(contractForm.contractName);
@@ -41,9 +46,21 @@ const Contract = () => {
         setSystemCost(contractForm.systemCost);
         setFirstProduction(contractForm.firstProduction);
     }, [contractForm, setContractName, setContractAddress, setSystemSize, setSystemCost, setFirstProduction])
-
-
-
+    
+    useEffect(() => {
+        if (contractName.length < customer.length && !isContractNameBlurred) {
+            return;
+        }
+        setIsNameValid(validateContractName(customer, contractName));
+        if(isNameValid) setIsContractNameBlurred(false);
+    }, [customer, contractName, isContractNameBlurred])
+    
+    const validateContractName = (customer, contractName) => {
+        if (contractName.length >= customer.length) {
+            return contractName.toLowerCase().includes(customer.toLowerCase());
+        }
+        return true;
+    };
 
     // handler to paste from clipboard to the contractName input field
     const handlePaste = async (fill) => {
@@ -72,8 +89,10 @@ const Contract = () => {
                         label={<div className="text-green-300 font-medium">Contract Name</div>}
                         color="green"
                         value={contractName} 
-                        onChange={(e) => setContractName(e.target.value)}
+                        onChange={(e) => {setContractName(e.target.value)}}
+                        onBlur={() => setIsContractNameBlurred(true)}
                     />
+                    {customer && contractName && !isNameValid && <Chip color='red' className="rounded-full" value='No match' />}
                     <PasteButton onPaste={() => handlePaste(setContractName)} />
                 </div>
                 <div className="flex flex-row space-x-2">
