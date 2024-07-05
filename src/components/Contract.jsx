@@ -86,6 +86,7 @@ const Contract = () => {
                         value={contractAddress} 
                         onChange={(e) => setContractAddress(e.target.value)}
                     />
+                    <DataMatchValidator dataOne={address} dataTwo={contractAddress} />
                     <PasteButton onPaste={() => handlePaste(setContractAddress)} />
                 </div>
                 <div className="flex flex-row space-x-2">
