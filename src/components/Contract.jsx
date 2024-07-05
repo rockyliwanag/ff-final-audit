@@ -6,11 +6,10 @@ import {
     Input,
     Select,
     Option,
-    Radio,
-    Chip
+    Radio
 } from '@material-tailwind/react';
 import { useGlobalContext } from '@/app/contexts/globalContext';
-
+import DataMatchValidator from "./DataMatchValidator";
 import Icon from '@/assets/Icon';
 import PasteButton from "./PasteButton";
 import moduleGroup from "@/app/options/moduleGroup";
@@ -25,9 +24,6 @@ const Contract = () => {
         systemCost, setSystemCost,
         firstProduction, setFirstProduction
     } = useGlobalContext();
-
-    const [isNameValid, setIsNameValid] = useState(true);
-    const [isContractNameBlurred, setIsContractNameBlurred] = useState(false);
     
     const contractForm = {
         contractName: contractName,
@@ -37,7 +33,6 @@ const Contract = () => {
         firstProduction: firstProduction
     }
 
-    
     useEffect(() => {
         //add useEffect to delay the state update of handlePaste
         setContractName(contractForm.contractName);
@@ -46,21 +41,6 @@ const Contract = () => {
         setSystemCost(contractForm.systemCost);
         setFirstProduction(contractForm.firstProduction);
     }, [contractForm, setContractName, setContractAddress, setSystemSize, setSystemCost, setFirstProduction])
-    
-    useEffect(() => {
-        if (contractName.length < customer.length && !isContractNameBlurred) {
-            return;
-        }
-        setIsNameValid(validateContractName(customer, contractName));
-        if(isNameValid) setIsContractNameBlurred(false);
-    }, [customer, contractName, isContractNameBlurred])
-    
-    const validateContractName = (customer, contractName) => {
-        if (contractName.length >= customer.length) {
-            return contractName.toLowerCase().includes(customer.toLowerCase());
-        }
-        return true;
-    };
 
     // handler to paste from clipboard to the contractName input field
     const handlePaste = async (fill) => {
@@ -92,7 +72,7 @@ const Contract = () => {
                         onChange={(e) => {setContractName(e.target.value)}}
                         onBlur={() => setIsContractNameBlurred(true)}
                     />
-                    {customer && contractName && !isNameValid && <Chip color='red' className="rounded-full" value='No match' />}
+                    <DataMatchValidator dataOne={customer} dataTwo={contractName} />
                     <PasteButton onPaste={() => handlePaste(setContractName)} />
                 </div>
                 <div className="flex flex-row space-x-2">
