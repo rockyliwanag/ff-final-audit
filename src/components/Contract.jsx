@@ -72,7 +72,7 @@ const Contract = () => {
                         onChange={(e) => {setContractName(e.target.value)}}
                         onBlur={() => setIsContractNameBlurred(true)}
                     />
-                    <DataMatchValidator dataOne={customer} dataTwo={contractName} />
+                    {contracName && <DataMatchValidator dataOne={customer} dataTwo={contractName} />}
                     <PasteButton onPaste={() => handlePaste(setContractName)} />
                 </div>
                 <div className="flex flex-row space-x-2">
@@ -86,7 +86,7 @@ const Contract = () => {
                         value={contractAddress} 
                         onChange={(e) => setContractAddress(e.target.value)}
                     />
-                    <DataMatchValidator dataOne={address} dataTwo={contractAddress} />
+                    {contractAddress && <DataMatchValidator dataOne={address} dataTwo={contractAddress} />}
                     <PasteButton onPaste={() => handlePaste(setContractAddress)} />
                 </div>
                 <div className="flex flex-row space-x-2">
