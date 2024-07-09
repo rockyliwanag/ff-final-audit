@@ -12,7 +12,7 @@ const panels = [
     {"type":"Longi 365W"},
     {"type":"Mission 380W"},
     {"type":"QCell 400w"},
-    {"type":"Cell 405W"},
+    {"type":"QCell 405W"},
     {"type":"QCell 410W"},
     {"type":"REC 405W"},
     {"type":"Seraphim 365W"},

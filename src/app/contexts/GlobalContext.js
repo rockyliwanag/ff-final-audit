@@ -25,6 +25,13 @@ export const GlobalProvider = ({ children }) => {
     const [electrical, setElectrical] = useState("");
     const [pitch, setRoofPitch] = useState("");
     const [salesMet, setSalesMet] = useState("");
+    const [openProjectDetails, setOpenProjectDetails] = useState();
+    const [openCE_Notes, setOpenCE_Notes] = useState();
+    const [openContract, setOpenContract] = useState();
+    const [openCR_Drive, setOpenCR_Drive] = useState();
+    const [openSiteCapture, setOpenSiteCapture] = useState();
+    const [openAurora, setOpenAurora] = useState();
+    const [openFinance, setOpenFinance] = useState();
 
     return (
         <GlobalContext.Provider value={
@@ -66,7 +73,21 @@ export const GlobalProvider = ({ children }) => {
                 pitch,
                 setRoofPitch,
                 salesMet,
-                setSalesMet
+                setSalesMet,
+                openProjectDetails,
+                setOpenProjectDetails,
+                openCE_Notes,
+                setOpenCE_Notes,
+                openContract,
+                setOpenContract,
+                openCR_Drive,
+                setOpenCR_Drive,
+                openSiteCapture,
+                setOpenSiteCapture,
+                openAurora,
+                setOpenAurora,
+                openFinance,
+                setOpenFinance
             }
         
         }>

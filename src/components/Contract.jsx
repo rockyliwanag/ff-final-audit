@@ -6,7 +6,10 @@ import {
     Input,
     Select,
     Option,
-    Radio
+    Radio,
+    Accordion,
+    AccordionHeader,
+    AccordionBody
 } from '@material-tailwind/react';
 import { useGlobalContext } from '@/app/contexts/globalContext';
 import DataMatchValidator from "./DataMatchValidator";
@@ -22,7 +25,8 @@ const Contract = () => {
         contractAddress, setContractAddress,
         systemSize, setSystemSize,
         systemCost, setSystemCost,
-        firstProduction, setFirstProduction
+        firstProduction, setFirstProduction,
+        openContract, setOpenContract
     } = useGlobalContext();
     
     const contractForm = {
@@ -42,6 +46,12 @@ const Contract = () => {
         setFirstProduction(contractForm.firstProduction);
     }, [contractForm, setContractName, setContractAddress, setSystemSize, setSystemCost, setFirstProduction])
 
+    useEffect(() => {
+        setOpenContract(true);
+    }, [setOpenContract])
+
+    const handleOpenContract = () => setOpenContract((curr) => !curr);
+
     // handler to paste from clipboard to the contractName input field
     const handlePaste = async (fill) => {
 
@@ -55,122 +65,125 @@ const Contract = () => {
     
   return (
     <>
-        <form>
-            <div className="flex flex-row mt-2">
-                <Typography variant="h3" className="w-full">Contract</Typography>
-            </div>
-            <div className='flex flex-col space-y-2'>
-                <div className="flex flex-row space-x-2">
-                    <Input 
-                        variant='standard'
-                        className="text-white"
-                        type='text' 
-                        name='contractName' 
-                        label={<div className="text-green-300 font-medium">Contract Name</div>}
-                        color="green"
-                        value={contractName} 
-                        onChange={(e) => {setContractName(e.target.value)}}
-                        onBlur={() => setIsContractNameBlurred(true)}
-                    />
-                    {contractName && <DataMatchValidator dataOne={customer} dataTwo={contractName} />}
-                    <PasteButton onPaste={() => handlePaste(setContractName)} />
-                </div>
-                <div className="flex flex-row space-x-2">
-                    <Input 
-                        variant='standard'
-                        className="text-white"
-                        type='text' 
-                        name='contractAddress' 
-                        label={<div className="text-green-300 font-medium">Contract Address</div>}
-                        color="green"
-                        value={contractAddress} 
-                        onChange={(e) => setContractAddress(e.target.value)}
-                    />
-                    {contractAddress && <DataMatchValidator dataOne={address} dataTwo={contractAddress} />}
-                    <PasteButton onPaste={() => handlePaste(setContractAddress)} />
-                </div>
-                <div className="flex flex-row space-x-2">
-                    <Input 
-                        variant='standard'
-                        className="text-white"
-                        type='text' 
-                        name='systemSize' 
-                        label={<div className="text-green-300 font-medium">System Size</div>}
-                        color="green"
-                        value={systemSize} 
-                        onChange={(e) => setSystemSize(e.target.value)}
-                    />
-                    <PasteButton onPaste={() => handlePaste(setSystemSize)} />
-                </div>
-                <div className="flex flex-row space-x-2">
-                    <Input 
-                        variant='standard'
-                        className="text-white"
-                        type='text' 
-                        name='systemCost' 
-                        label={<div className="text-green-300 font-medium">System Cost</div>}
-                        color="green"
-                        value={systemCost} 
-                        onChange={(e) => setSystemCost(e.target.value)}
-                    />
-                    <PasteButton onPaste={() => handlePaste(setSystemCost)} />
-                </div>
-                <div className="flex flex-row space-x-2">
-                    <Input 
-                        variant='standard'
-                        className="text-white"
-                        type='text' 
-                        name='firstProduction' 
-                        label={<div className="text-green-300 font-medium">First Year Production</div>}
-                        color="green"
-                        value={firstProduction} 
-                        onChange={(e) => setFirstProduction(e.target.value)}
-                    />
-                    <PasteButton onPaste={() => handlePaste(setFirstProduction)} />
-                </div>
-                <div className="flex flex-row space-x-2">
-                    <Select 
-                        className="w-full text-white"
-                        color="green" 
-                        variant="standard" 
-                        label={<div className="text-green-300 font-medium">Select Module Group</div>}
-                    >
-                        {moduleGroup.map((item, idx) => {
-                            return(
-                                <Option key={idx} value={item.group}>{item.group}</Option>
-                            )
-                        })}
-                    </Select>
-                </div>
-                <div className="flex flex-row space-x-2">
-                    <Select 
-                        className="w-full text-white"
-                        color="green" 
-                        variant="standard" 
-                        label={<div className="text-green-300 font-medium">Select Inverter Group</div>}
-                    >
-                        {inverterGroup.map((item, idx) => {
-                            return(
-                                <Option key={idx} value={item.group}>{item.group}</Option>
-                            )
-                        })}
-                    </Select>
-                </div>
-                <div className='flex flex-row  justify-between items-center'>
-                    <Typography variant="h5" color="amber">Mounting Type</Typography> 
-                    <div className='flex flex-row'>
-                        {mountingType.map((file, idx) => (
-                            <div key={idx} className='text-white'>
-                                <Radio  color='green' name='mountingType' value={file.type} label={<Typography color='white'>{file.type}</Typography>} icon={<Icon/>} />
+        <Accordion open={openContract}>
+            <form>
+                <AccordionHeader onClick={handleOpenContract} className="flex flex-row mt-2">
+                    <Typography variant="h3" className="w-full text-white">Contract</Typography>
+                </AccordionHeader>
+                <AccordionBody>
+                    <div className='flex flex-col space-y-2'>
+                        <div className="flex flex-row space-x-2">
+                            <Input 
+                                variant='standard'
+                                className="text-white"
+                                type='text' 
+                                name='contractName' 
+                                label={<div className="text-green-300 font-medium">Contract Name</div>}
+                                color="green"
+                                value={contractName} 
+                                onChange={(e) => {setContractName(e.target.value)}}
+                            />
+                            {contractName && <DataMatchValidator dataOne={customer} dataTwo={contractName} />}
+                            <PasteButton onPaste={() => handlePaste(setContractName)} />
+                        </div>
+                        <div className="flex flex-row space-x-2">
+                            <Input 
+                                variant='standard'
+                                className="text-white"
+                                type='text' 
+                                name='contractAddress' 
+                                label={<div className="text-green-300 font-medium">Contract Address</div>}
+                                color="green"
+                                value={contractAddress} 
+                                onChange={(e) => setContractAddress(e.target.value)}
+                            />
+                            {contractAddress && <DataMatchValidator dataOne={address} dataTwo={contractAddress} />}
+                            <PasteButton onPaste={() => handlePaste(setContractAddress)} />
+                        </div>
+                        <div className="flex flex-row space-x-2">
+                            <Input 
+                                variant='standard'
+                                className="text-white"
+                                type='text' 
+                                name='systemSize' 
+                                label={<div className="text-green-300 font-medium">System Size</div>}
+                                color="green"
+                                value={systemSize} 
+                                onChange={(e) => setSystemSize(e.target.value)}
+                            />
+                            <PasteButton onPaste={() => handlePaste(setSystemSize)} />
+                        </div>
+                        <div className="flex flex-row space-x-2">
+                            <Input 
+                                variant='standard'
+                                className="text-white"
+                                type='text' 
+                                name='systemCost' 
+                                label={<div className="text-green-300 font-medium">System Cost</div>}
+                                color="green"
+                                value={systemCost} 
+                                onChange={(e) => setSystemCost(e.target.value)}
+                            />
+                            <PasteButton onPaste={() => handlePaste(setSystemCost)} />
+                        </div>
+                        <div className="flex flex-row space-x-2">
+                            <Input 
+                                variant='standard'
+                                className="text-white"
+                                type='text' 
+                                name='firstProduction' 
+                                label={<div className="text-green-300 font-medium">First Year Production</div>}
+                                color="green"
+                                value={firstProduction} 
+                                onChange={(e) => setFirstProduction(e.target.value)}
+                            />
+                            <PasteButton onPaste={() => handlePaste(setFirstProduction)} />
+                        </div>
+                        <div className="flex flex-row space-x-2">
+                            <Select 
+                                className="w-full text-white"
+                                color="green" 
+                                variant="standard" 
+                                label={<div className="text-green-300 font-medium">Select Module Group</div>}
+                            >
+                                {moduleGroup.map((item, idx) => {
+                                    return(
+                                        <Option key={idx} value={item.group}>{item.group}</Option>
+                                    )
+                                })}
+                            </Select>
+                        </div>
+                        <div className="flex flex-row space-x-2">
+                            <Select 
+                                className="w-full text-white"
+                                color="green" 
+                                variant="standard" 
+                                label={<div className="text-green-300 font-medium">Select Inverter Group</div>}
+                            >
+                                {inverterGroup.map((item, idx) => {
+                                    return(
+                                        <Option key={idx} value={item.group}>{item.group}</Option>
+                                    )
+                                })}
+                            </Select>
+                        </div>
+                        <div className='flex flex-row  justify-between items-center'>
+                            <Typography variant="h5" color="amber">Mounting Type</Typography> 
+                            <div className='flex flex-row'>
+                                {mountingType.map((file, idx) => (
+                                    <div key={idx} className='text-white'>
+                                        <Radio  color='green' name='mountingType' value={file.type} label={<Typography color='white'>{file.type}</Typography>} icon={<Icon/>} />
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        </div>
+                        <div className="">
+                            <Textarea className='text-white' color='green' variant='outlined' name='additionalComponents' label={<div className="text-green-300 font-medium">Additional Components</div>}/>
+                        </div>
                     </div>
-                </div>
-                <div className="">
-                    <Textarea className='text-white' color='green' variant='outlined' name='additionalComponents' label={<div className="text-green-300 font-medium">Additional Components</div>}/>
-                </div>
-            </div>
-        </form>
+                </AccordionBody>
+            </form>
+        </Accordion>
     </>
   )
 
