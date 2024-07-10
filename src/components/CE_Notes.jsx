@@ -8,6 +8,7 @@ import attachmentType from '@/app/options/attachmentType';
 import panels from "@/app/options/panels";
 import inverters from "@/app/options/inverters";
 import roofMatetial from "@/app/options/roofMaterial";
+import batteries from "@/app/options/batteries";
 
 const CE_Notes = () => {
     const { address, 
@@ -15,10 +16,14 @@ const CE_Notes = () => {
         holding, setHolding, 
         tie_In, setTie_In, 
         roofWork, setRoofWork, 
-        electrical, setElectrical, 
+        electrical, setElectrical,
+        groundMount, setGroundMount,
+        trimming, setTrimming,
+        trenching, setTrenching,
         pitch, setRoofPitch, 
         salesMet, setSalesMet,
-        openCE_Notes, setOpenCE_Notes 
+        openCE_Notes, setOpenCE_Notes, 
+        battery, setBattery
     } = useGlobalContext();
 
     //Filter the address to get the State
@@ -35,12 +40,19 @@ const CE_Notes = () => {
 
     // if the ls_address is 'FL' or 'TX' then show lstFee as true else false
     const lstFee = ls_address && (ls_address[0] === 'FL' || ls_address[0] === 'TX') ? true : false
+    
+    let isTrueSet = (battery?.toLowerCase?.() === 'true');
+
+    const handleChange = (e) => {
+        setBattery(e.target.value)
+    }
 
     useEffect(() => {
         setOpenCE_Notes(true);
     }, [setOpenCE_Notes])
 
     const handleOpenCE_Notes = () => setOpenCE_Notes((curr) => !curr);
+    
 
   return (
     <>
@@ -181,6 +193,33 @@ const CE_Notes = () => {
                         <div className="">
                             <Textarea className='text-white' color='green' name='poiNotes' label={<div className='text-green-300'>POI Notes</div>} />
                         </div>
+                        
+                        {/*Battery*/}
+                        <div className='flex flex-row  justify-between items-center'>
+                            <Typography variant="h5" color="amber">Battery</Typography> 
+                            <div className='flex flex-row'>
+                                <div>
+                                    <Radio color='green' name='battery' label={<Typography className="text-white font-medium">Yes</Typography>} value={true} icon={<Icon/>} onChange={handleChange}/>
+                                </div>
+                                <div>
+                                    <Radio color='green' name='battery' label={<Typography className="text-white font-medium">No</Typography>} value={false} icon={<Icon/>} onChange={handleChange}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div >
+                            {isTrueSet &&
+                            <div className="flex flex-row space-x-2">
+                                <Input className='w-4' color='green' type='text' name='battery' label={<div className='text-green-300'>Battery Qty</div>}  placeholder='0'/>
+                                <Select className='w-full' color="green" variant="standard" label={<div className='text-green-300'>Select Battery</div>}>
+                                    {batteries.map((item, idx) => {
+                                        return (
+                                            <Option key={idx} value={item.type}>{<div className="text-gray-500">{item.type}</div>}</Option>
+                                        )
+                                    })}
+                                </Select>
+                            </div>
+                            }
+                        </div>
 
                         {/*Roof Material*/}
                         <div className="flex flex-row items-center">
@@ -213,39 +252,55 @@ const CE_Notes = () => {
                             <Typography variant="h5" color='amber'>Trench</Typography>
                             <div className='flex flex-row'>
                                 <div>
-                                    <Radio color='green' name='trench' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
+                                    <Radio color='green' name='trenching' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setTrenching('yes')}/>
                                 </div>
                                 <div>
-                                    <Radio color='green' name='trench' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
+                                    <Radio color='green' name='trenching' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setTrenching('no')}/>
                                 </div>
                             </div>
                         </div>
+                        {trenching === 'yes' &&
+                            <div className="">
+                                <Textarea color='green' className='text-white' name='trenchingNotes' label={<div className="text-green-300 font-medium">Trenching Notes</div>}/>
+                            </div>
+                        }
 
                         {/*Tree Trimming*/}
                         <div className="flex flex-row justify-between items-center">
                             <Typography variant="h5" color='amber'>Tree Trimming</Typography>
                             <div className='flex flex-row'>
                             <div>
-                                    <Radio color='green' name='treeTrim' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
+                                    <Radio color='green' name='treeTrim' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setTrimming('yes')}/>
                                 </div>
                                 <div>
-                                    <Radio color='green' name='treeTrim' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
+                                    <Radio color='green' name='treeTrim' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setTrimming('no')}/>
                                 </div>
                             </div>
                         </div>
+                        {trimming === 'yes' &&
+                            <div className="">
+                                <Textarea color='green' className='text-white' name='trimmingNotes' label={<div className="text-green-300 font-medium">Tree Trimming Notes</div>}/>
+                            </div>
+                        }
 
                         {/*Ground Mount*/}
                         <div className="flex flex-row justify-between items-center">
                             <Typography variant="h5" color='amber'>Ground Mount</Typography>
                             <div className='flex flex-row'>
                             <div>
-                                    <Radio color='green' name='groundMount' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
+                                    <Radio color='green' name='groundMount' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>} onChange={() => setGroundMount('yes')}/>
                                 </div>
                                 <div>
-                                    <Radio color='green' name='groundMount' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
+                                    <Radio color='green' name='groundMount' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>} onChange={() => setGroundMount('no')}/>
                                 </div>
                             </div>
                         </div>
+                        {groundMount === 'yes' &&
+                            <div className="">
+                                <Textarea color='green' className='text-white' name='groundMountNotes' label={<div className="text-green-300 font-medium">Ground Mount Notes</div>}/>
+                            </div>
+                        }
+
                         {/*Roof Work*/}
                         <div className="flex flex-row justify-between items-center">
                             <Typography variant="h5" color='amber'>Roof Work</Typography>

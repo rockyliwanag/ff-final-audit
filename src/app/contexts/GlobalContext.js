@@ -21,8 +21,12 @@ export const GlobalProvider = ({ children }) => {
     const [holding, setHolding] = useState("");
     const [tie_In, setTie_In] = useState("");
     const [utility, setUtility] = useState("");
+    const [battery, setBattery] = useState(null);
     const [roofWork, setRoofWork] = useState("");
     const [electrical, setElectrical] = useState("");
+    const [groundMount, setGroundMount] = useState("");
+    const [trimming, setTrimming] = useState("");
+    const [trenching, setTrenching] = useState("");
     const [pitch, setRoofPitch] = useState("");
     const [salesMet, setSalesMet] = useState("");
     const [openProjectDetails, setOpenProjectDetails] = useState();
@@ -32,6 +36,9 @@ export const GlobalProvider = ({ children }) => {
     const [openSiteCapture, setOpenSiteCapture] = useState();
     const [openAurora, setOpenAurora] = useState();
     const [openFinance, setOpenFinance] = useState();
+    const [auPanelQty, setAuPanelQty] = useState("");
+    const [auSysSize, setAuSysSize] = useState("");
+    const [finalProduction, setFinalProduction] = useState("");
 
     return (
         <GlobalContext.Provider value={
@@ -66,10 +73,18 @@ export const GlobalProvider = ({ children }) => {
                 setTie_In,
                 utility,
                 setUtility,
+                battery,
+                setBattery,
                 roofWork,
                 setRoofWork,
                 electrical,
                 setElectrical,
+                trimming,
+                setTrimming,
+                trenching,
+                setTrenching,
+                groundMount,
+                setGroundMount,
                 pitch,
                 setRoofPitch,
                 salesMet,
@@ -87,7 +102,13 @@ export const GlobalProvider = ({ children }) => {
                 openAurora,
                 setOpenAurora,
                 openFinance,
-                setOpenFinance
+                setOpenFinance,
+                auPanelQty,
+                setAuPanelQty,
+                auSysSize,
+                setAuSysSize,
+                finalProduction,
+                setFinalProduction
             }
         
         }>

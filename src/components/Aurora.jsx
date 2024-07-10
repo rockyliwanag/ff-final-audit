@@ -12,17 +12,26 @@ import {
 } from '@material-tailwind/react';
 import { useGlobalContext } from '@/app/contexts/globalContext';
 import panels from "@/app/options/panels";
+import PasteButton from "./PasteButton";
 
 const Aurora = () => {
-    const [panelQty, setPanelQty] = useState("");
-    const [systemSize, setSystemSize] = useState("");
+    
     const [production, setProduction] = useState("");
 
-    const { openAurora, setOpenAurora } = useGlobalContext();
+    const { openAurora, setOpenAurora, auPanelQty, setAuPanelQty, auSysSize, setAuSysSize, finalProduction, setFinalProduction } = useGlobalContext();
     
     useEffect(() => {
         setOpenAurora(true);
     }, [setOpenAurora])
+
+    const handlePaste = async (fill) => {
+        if (navigator.clipboard && navigator.clipboard.readText) {
+            const text = await navigator.clipboard.readText();
+            fill(text);
+        } else {
+            console.log("Clipboard readText is not supported in this browser.");
+        }
+    }
     
     const handleOpenAurora = () => setOpenAurora((curr) => !curr);
     
@@ -37,18 +46,19 @@ const Aurora = () => {
                 </AccordionHeader>
                 <AccordionBody>
                     <div className='flex flex-col space-y-2'>
-                        <div>
+                        <div className="flex flex-row space-x-2">
                             <Input 
                                 // className='text-black p-1' 
                                 variant='standard'
                                 className="text-white"
                                 type='text' 
-                                name='panelQty' 
+                                name='auPanelQty' 
                                 label={<div className="text-green-300 font-medium">Panel Qty</div>}
                                 color="green"
-                                value={panelQty} 
-                                onChange={(e) => setPanelQty(e.target.value)}
+                                value={auPanelQty} 
+                                onChange={(e) => setAuPanelQty(e.target.value)}
                             />
+                            <PasteButton onPaste={() => handlePaste(setAuPanelQty)} />
                         </div>
                         <div className="flex flex-row space-x-2">
                             <Select 
@@ -64,31 +74,33 @@ const Aurora = () => {
                                 })}
                             </Select>
                         </div>
-                        <div>
+                        <div  className="flex flex-row space-x-2">
                             <Input 
                                 // className='text-black p-1' 
                                 variant='standard'
                                 className="text-white"
                                 type='text' 
-                                name='systemSize' 
+                                name='auSysSize' 
                                 label={<div className="text-green-300 font-medium">System Size</div>}
                                 color="green"
-                                value={systemSize} 
-                                onChange={(e) => setSystemSize(e.target.value)}
+                                value={auSysSize} 
+                                onChange={(e) => setAuSysSize(e.target.value)}
                             />
+                            <PasteButton onPaste={() => handlePaste(setAuSysSize)} />
                         </div>
-                        <div>
+                        <div className="flex flex-row space-x-2">
                             <Input 
                                 // className='text-black p-1' 
                                 variant='standard'
                                 className="text-white"
                                 type='text' 
-                                name='firstProduction' 
+                                name='finalProduction' 
                                 label={<div className="text-green-300 font-medium">Production</div>}
                                 color="green"
-                                value={production} 
-                                onChange={(e) => setProduction(e.target.value)}
+                                value={finalProduction} 
+                                onChange={(e) => setFinalProduction(e.target.value)}
                             />
+                            <PasteButton onPaste={() => handlePaste(setFinalProduction)} />
                         </div>
                         <div className="">
                             <Textarea className='text-white' color='green' variant='outlined' name='additionalComponents' label={<div className="text-green-300 font-medium">Notes</div>}/>

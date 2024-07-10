@@ -7,8 +7,6 @@ import {
     PopoverHandler, 
     PopoverContent, 
     Typography, 
-    Select, 
-    Option, 
     Textarea,
     Accordion,
     AccordionHeader,
@@ -20,11 +18,9 @@ import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { useGlobalContext } from "@/app/contexts/globalContext";
 import PasteButton from "./PasteButton";
 import Icon from '@/assets/Icon';
-import batteries from "@/app/options/batteries";
-
 
 const ProjDetails = () => {
-    const [battery, setBattery] = useState(null);
+
     const [date, setDate] = useState(new Date());
     const { utility, setUtility, openProjectDetails, setOpenProjectDetails } = useGlobalContext();
 
@@ -41,22 +37,16 @@ const ProjDetails = () => {
         setOpenProjectDetails(true);
     }, [setOpenProjectDetails])
 
-    let isTrueSet = (battery?.toLowerCase?.() === 'true');
-
-    const handleChange = (e) => {
-        setBattery(e.target.value)
-    }
-
     const handleOpenProjectDetails = () => setOpenProjectDetails((curr) => !curr);
     
   return (
     <>
         <Accordion open={openProjectDetails}>
             <form >
-                <AccordionHeader onClick={handleOpenProjectDetails} className="flex flex-col space-y-2 mt-2">
-                    <div className="flex flex-row">
+                <AccordionHeader onClick={handleOpenProjectDetails} className=" ">
+                    <div className="flex flex-wrap space-y-2 mt-2">
                         <Typography variant="h3" className="text-white w-full">Project Details</Typography>
-                        <Popover className='w-min' placement="bottom">
+                        <Popover className='' placement="bottom">
                             <PopoverHandler>
                                 <Input
                                     color="green"
@@ -180,7 +170,7 @@ const ProjDetails = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex flex-row  justify-between items-center'>
+                        {/* <div className='flex flex-row  justify-between items-center'>
                             <Typography variant="h5" color="amber">Battery</Typography> 
                             <div className='flex flex-row'>
                                 <div>
@@ -204,7 +194,7 @@ const ProjDetails = () => {
                                 </Select>
                             </div>
                             }
-                        </div>
+                        </div> */}
                         <div className="flex flex-row space-x-2">
                             <Input 
                                 className='text-white' 
