@@ -10,7 +10,7 @@ import {
     AccordionBody
 } from '@material-tailwind/react';
 import Icon from '@/assets/Icon';
-
+import PasteButton from "./PasteButton";
 
 
 const Finance = () => {
@@ -23,7 +23,8 @@ const Finance = () => {
         dealerFee, 
         setDealerFee,
         openFinance,
-        setOpenFinance
+        setOpenFinance,
+
     } = useGlobalContext();
 
     useEffect(() => {
@@ -31,6 +32,15 @@ const Finance = () => {
     }, [setOpenFinance])
 
     const handleOpenFinance = () => setOpenFinance((curr) => !curr);
+
+    const handlePaste = async (fill) => {
+        if (navigator.clipboard && navigator.clipboard.readText) {
+            const text = await navigator.clipboard.readText();
+            fill(text);
+        } else {
+            console.log("Clipboard readText is not supported in this browser.");
+        }
+    }
     
   return (
     <>
@@ -44,7 +54,7 @@ const Finance = () => {
                 <AccordionBody>
                     <div className='flex flex-col space-y-2'>
                         
-                        <div>
+                        <div className="flex flex-row space-x-2">
                             <Input 
                                 // className='text-black p-1' 
                                 variant='standard'
@@ -56,8 +66,9 @@ const Finance = () => {
                                 value={opportunity} 
                                 onChange={(e) => setOpportunity(e.target.value)}
                             />
+                            <PasteButton onPaste={() => handlePaste(setOpportunity)} />
                         </div>
-                        <div>
+                        <div className="flex flex-row space-x-2">
                             <Input 
                                 // className='text-black p-1' 
                                 variant='standard'
@@ -69,8 +80,9 @@ const Finance = () => {
                                 value={loanAmount} 
                                 onChange={(e) => setLoanAmount(e.target.value)}
                             />
+                            <PasteButton onPaste={() => handlePaste(setLoanAmount)} />
                         </div>
-                        <div>
+                        <div className="flex flex-row space-x-2">
                             <Input 
                                 // className='text-black p-1' 
                                 variant='standard'
@@ -82,8 +94,9 @@ const Finance = () => {
                                 value={loanProduct} 
                                 onChange={(e) => setLoanProduct(e.target.value)}
                             />
+                            <PasteButton onPaste={() => handlePaste(setLoanProduct)} />
                         </div>
-                        <div>
+                        <div className="flex flex-row space-x-2">
                             <Input 
                                 // className='text-black p-1' 
                                 variant='standard'
@@ -95,6 +108,7 @@ const Finance = () => {
                                 value={dealerFee} 
                                 onChange={(e) => setDealerFee(e.target.value)}
                             />
+                            <PasteButton onPaste={() => handlePaste(setDealerFee)} />
                         </div>
                         <div className="flex flex-row justify-between items-center">
                             <Typography variant="h5" color='amber'>Loan Status</Typography>
