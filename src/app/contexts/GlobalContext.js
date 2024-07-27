@@ -5,7 +5,7 @@ import { createContext, useContext, useState, useEffect } from 'react'
 const GlobalContext = createContext({});
 
 export const GlobalProvider = ({ children }) => {
-
+    const [date, setDate] = useState(new Date());
     const [customer, setCustomer] = useState('');
     const [address, setAddress] = useState('');
     const [contractName, setContractName] = useState("");
@@ -43,6 +43,8 @@ export const GlobalProvider = ({ children }) => {
     return (
         <GlobalContext.Provider value={
             {
+                date,
+                setDate,
                 contractName,
                 setContractName,
                 customer,

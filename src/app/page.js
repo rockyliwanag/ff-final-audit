@@ -6,6 +6,7 @@ import Contract from "@/components/Contract";
 import SiteCapture from "@/components/SiteCapture";
 import Aurora from "@/components/Aurora";
 import Finance from "@/components/Finance";
+import Adders from "@/components/Adders";
 import { GlobalProvider } from "@/app/contexts/globalContext";
 
 
@@ -23,6 +24,7 @@ export default function Home() {
             <SiteCapture />
             <Aurora />
             <Finance />
+            <Adders />
         </div>
       </GlobalProvider>
     </main>

@@ -21,8 +21,8 @@ import Icon from '@/assets/Icon';
 
 const ProjDetails = () => {
 
-    const [date, setDate] = useState(new Date());
-    const { utility, setUtility, openProjectDetails, setOpenProjectDetails } = useGlobalContext();
+    
+    const { date, setDate, utility, setUtility, openProjectDetails, setOpenProjectDetails } = useGlobalContext();
 
     const handlePaste = async (fill) => {
         if (navigator.clipboard && navigator.clipboard.readText) {
