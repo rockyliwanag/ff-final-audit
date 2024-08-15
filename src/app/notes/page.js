@@ -17,7 +17,32 @@ export default function Notes() {
     const [ppc, setPpc] = useState("");
     const [pg, setPg] = useState("");
 
-    
+    const copyToClipboard = () => {
+        const stateOutput = 
+            `${numArray} array/s
+            ${numQty} ${module}
+            ${optimizer}
+            ${inverter}
+            ${attachment}
+
+            $${gsp}
+            $${ppc}/w
+            ${pg} kWh
+
+            ${rejection}`;
+
+        navigator.clipboard.writeText(stateOutput)
+            .then(() => {
+                console.log('State output copied to clipboard');
+            })
+            .catch((error) => {
+                console.error('Failed to copy state output to clipboard:', error);
+            });
+    };
+
+    // ...
+
+    <button onClick={copyToClipboard}>Copy State Output</button>
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -43,6 +68,7 @@ export default function Notes() {
                 <InputCP inputValue={ppc} setInputValue={setPpc} variant="text"/>
                 <h1 className="font-italic">PG</h1>
                 <InputCP inputValue={pg} setInputValue={setPg} variant="text"/>
+                <button onClick={copyToClipboard}>Copy State Output</button>
             </div>
         </main>
     );
