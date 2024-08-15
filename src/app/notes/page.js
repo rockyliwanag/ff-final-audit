@@ -1,43 +1,40 @@
 'use client'
 import { useState } from 'react';
-// import { Input, Button } from '@material-tailwind/react';}
+import {Textarea} from "@nextui-org/input";
+import InputCP from '../../components/InputCP';
 import Navigate from '../../components/Navigation';
 
 
 export default function Notes() {
-    const [inputValue, setInputValue] = useState('');
+    const [numArray, setNumArray] = useState(0);
+    const [numQty, setNumQty] = useState(0);
+    const [module, setModule] = useState("");
+    const [optimizer, setOptimizer] = useState("");
+    const [inverter, setInverter] = useState("");
+    const [attachment, setAttachment] = useState("");
+    const [rejection, setRejection] = useState("");
 
-
-
-    // Function to copy the input value to clipboard
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(inputValue);
-    };
-
-    // Function to paste the clipboard value to input
-    const pasteFromClipboard = async () => {
-        const text = await navigator.clipboard.readText();
-        setInputValue(text);
-    };
+    
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          
-                <div className='flex flex-col'>
-                    <Navigate />
-                    <h1 className="font-bold">Number of Arrays</h1>
-                    <div className='flex flex-row gap-x-4'>
-                        <input
-                            className="text-black"
-                            type='text' 
-                            name='inputValue' 
-                            value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value)}
-                        />
-                        <button onClick={copyToClipboard}>Copy</button>
-                        <button onClick={pasteFromClipboard}>Paste</button>
-                    </div>
-                </div>
+            <div className='flex flex-col'>
+                <Navigate />
+                <h1 className="font-italic">Number of Arrays</h1>
+                <InputCP inputValue={numArray} setInputValue={setNumArray} variant="text" />
+                <h1 className="font-italic">Qty</h1>
+                <InputCP inputValue={numQty} setInputValue={setNumQty} variant="text"/>
+                <h1 className="font-italic">Module</h1>
+                <InputCP inputValue={module} setInputValue={setModule} variant="text"/>
+                <h1 className="font-italic">Optimizer</h1>
+                <InputCP inputValue={optimizer} setInputValue={setOptimizer} variant="text"/>
+                <h1 className="font-italic">Inverter</h1>
+                <InputCP inputValue={inverter} setInputValue={setInverter} variant="text"/>
+                <h1 className="font-italic">Attachment</h1>
+                <InputCP inputValue={attachment} setInputValue={setAttachment} variant="text"/>
+                <h1 className="font-italic">Rejection Notes</h1>
+                <InputCP inputValue={rejection} setInputValue={setRejection} variant="Textarea"/>
+            </div>
         </main>
     );
 }
