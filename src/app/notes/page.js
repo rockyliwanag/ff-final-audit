@@ -13,6 +13,9 @@ export default function Notes() {
     const [inverter, setInverter] = useState("");
     const [attachment, setAttachment] = useState("");
     const [rejection, setRejection] = useState("");
+    const [gsp, setGsp] = useState("");
+    const [ppc, setPpc] = useState("");
+    const [pg, setPg] = useState("");
 
     
 
@@ -34,6 +37,12 @@ export default function Notes() {
                 <InputCP inputValue={attachment} setInputValue={setAttachment} variant="text"/>
                 <h1 className="font-italic">Rejection Notes</h1>
                 <InputCP inputValue={rejection} setInputValue={setRejection} variant="Textarea"/>
+                <h1 className="font-italic">GSP</h1>
+                <InputCP inputValue={gsp} setInputValue={setGsp} variant="text"/>
+                <h1 className="font-italic">PPC</h1>
+                <InputCP inputValue={ppc} setInputValue={setPpc} variant="text"/>
+                <h1 className="font-italic">PG</h1>
+                <InputCP inputValue={pg} setInputValue={setPg} variant="text"/>
             </div>
         </main>
     );
