@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react';
-import {Textarea} from "@nextui-org/input";
 import InputCP from '../../components/InputCP';
 import Navigate from '../../components/Navigation';
 
