@@ -7,10 +7,10 @@ const Navigation = () => {
         <nav>
             <ul className='flex gap-4 flex-row'>
                 <li>
-                    <Link href="/">Home</Link>
+                    <Link href="/">Final-Audit</Link>
                 </li>
                 <li>
-                    <Link href="/notes">Notes</Link>
+                    <Link href="/notes">Sunnova-Sticky</Link>
                 </li>
             </ul>
         </nav>
