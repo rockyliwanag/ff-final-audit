@@ -12,6 +12,9 @@ const Navigation = () => {
                 <li>
                     <Link href="/notes">Sunnova-Sticky</Link>
                 </li>
+                <li>
+                    <Link href="/PPW">PPW</Link>
+                </li>
             </ul>
         </nav>
     );

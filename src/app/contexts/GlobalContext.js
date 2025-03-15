@@ -1,6 +1,6 @@
 'use client';
 import { set } from 'date-fns';
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 const GlobalContext = createContext({});
 
