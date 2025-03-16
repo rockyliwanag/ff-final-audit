@@ -1,20 +1,19 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Input, Radio, Select, Option, Typography, Textarea, Chip, Accordion, AccordionHeader, AccordionBody } from '@material-tailwind/react';
 import { useGlobalContext } from '@/app/contexts/globalContext';
 import Icon from '@/assets/Icon';
-import tieIn from '@/app/options/tieIn';
-import attachmentType from '@/app/options/attachmentType';
-import panels from "@/app/options/panels";
-import inverters from "@/app/options/inverters";
+// import tieIn from '@/app/options/tieIn';
+// import attachmentType from '@/app/options/attachmentType';
+
 import roofMatetial from "@/app/options/roofMaterial";
-import batteries from "@/app/options/batteries";
+
 
 const CE_Notes = () => {
     const { address, 
         numPlanes, setNumPlanes, 
         holding, setHolding, 
-        tie_In, setTie_In, 
+        // tie_In, setTie_In, 
         roofWork, setRoofWork, 
         electrical, setElectrical,
         groundMount, setGroundMount,
@@ -23,7 +22,7 @@ const CE_Notes = () => {
         pitch, setRoofPitch, 
         salesMet, setSalesMet,
         openCE_Notes, setOpenCE_Notes, 
-        battery, setBattery
+        
     } = useGlobalContext();
 
     //Filter the address to get the State
@@ -41,11 +40,7 @@ const CE_Notes = () => {
     // if the ls_address is 'FL' or 'TX' then show lstFee as true else false
     const lstFee = ls_address && (ls_address[0] === 'FL' || ls_address[0] === 'TX') ? true : false
     
-    let isTrueSet = (battery?.toLowerCase?.() === 'true');
-
-    const handleChange = (e) => {
-        setBattery(e.target.value)
-    }
+   
 
     useEffect(() => {
         setOpenCE_Notes(true);
@@ -116,11 +111,11 @@ const CE_Notes = () => {
                         }
 
                         {/*Tie In*/}
-                        <div className="flex flex-row justify-between items-center">
+                        {/* <div className="flex flex-row justify-between items-center">
                             
-                            <Typography variant="h5" color='amber'>Tie In</Typography>
+                            <Typography variant="h5" color='amber'>Tie In</Typography> */}
                             {/*if ls_address shows 'FL' or 'TX' and the tieIn method is 'LST' then show the chip*/}
-                            {lstFee && tie_In === 'LST' && <Chip color='green' className='text-white rounded-full' size='lg' value='$0.00' />}
+                            {/* {lstFee && tie_In === 'LST' && <Chip color='green' className='text-white rounded-full' size='lg' value='$0.00' />}
                             {ls_address && !lstFee && tie_In === 'LST' &&  <Chip color='red' className='text-white rounded-full' size='lg' value='$450' />}
                             <div className="flex flex-row">
                                 {tieIn.map((item, idx) => {
@@ -131,7 +126,7 @@ const CE_Notes = () => {
                                     )
                                 })} 
                             </div>
-                        </div>
+                        </div> */}
 
                         {/*Adders*/}
                         <div className="">
@@ -149,34 +144,10 @@ const CE_Notes = () => {
                             </Select>
                         </div> */}
 
-                        {/*Modules*/}
-                        <div className="flex flex-row space-x-2 items-center">
-                        <Typography variant="h5" color='amber'>Module</Typography>
-                            <Input className='text-white' type='text' color='green' name='modules' label={<div className='text-green-300'>Module Qty</div>} placeholder='0'/>
-                            <Select className='text-white' color='green' variant="standard" label={<div className='text-green-300'>Select Module</div>}>
-                                {panels.map((item, idx) => {
-                                    return (
-                                        <Option key={idx} className='text-white' value={item.type}>{<div className="text-gray-500">{item.type}</div>}</Option>
-                                    )
-                                })}
-                            </Select>
-                        </div>
-
-                        {/*Inverter*/}
-                        <div className="flex flex-row items-center space-x-2">
-                            <Typography className='grow' variant="h5" color='amber'>Inverter</Typography>
-                            <Input className='text-white' color='green'  type='text' name='inverters' label={<div className='text-green-300'>Inverter Qty</div>}  placeholder='0'/>
-                            <Select className='grow' color="green" variant="standard" label={<div className='text-green-300'>Select Inverter</div>}>
-                                {inverters.map((item, idx) => {
-                                    return (
-                                        <Option key={idx}  value={item.type}>{<div className="text-gray-500">{item.type}</div>}</Option>
-                                    )
-                                })}
-                            </Select>
-                        </div>
+                        
 
                         {/*POI*/}
-                        <div className="flex flex-row justify-between items-center">
+                        {/* <div className="flex flex-row justify-between items-center">
                             <Typography variant="h5" color='amber'>POI</Typography>
                             <div className="flex flex-row">
                                 {tieIn.map((item, idx) => {
@@ -187,39 +158,14 @@ const CE_Notes = () => {
                                     )
                                 })} 
                             </div>
-                        </div>
+                        </div> */}
 
                         {/*POI Notes*/}
-                        <div className="">
+                        {/* <div className="">
                             <Textarea className='text-white' color='green' name='poiNotes' label={<div className='text-green-300'>POI Notes</div>} />
-                        </div>
+                        </div> */}
                         
-                        {/*Battery*/}
-                        <div className='flex flex-row  justify-between items-center'>
-                            <Typography variant="h5" color="amber">Battery</Typography> 
-                            <div className='flex flex-row'>
-                                <div>
-                                    <Radio color='green' name='battery' label={<Typography className="text-white font-medium">Yes</Typography>} value={true} icon={<Icon/>} onChange={handleChange}/>
-                                </div>
-                                <div>
-                                    <Radio color='green' name='battery' label={<Typography className="text-white font-medium">No</Typography>} value={false} icon={<Icon/>} onChange={handleChange}/>
-                                </div>
-                            </div>
-                        </div>
-                        <div >
-                            {isTrueSet &&
-                            <div className="flex flex-row space-x-2">
-                                <Input className='w-4' color='green' type='text' name='battery' label={<div className='text-green-300'>Battery Qty</div>}  placeholder='0'/>
-                                <Select className='w-full' color="green" variant="standard" label={<div className='text-green-300'>Select Battery</div>}>
-                                    {batteries.map((item, idx) => {
-                                        return (
-                                            <Option key={idx} value={item.type}>{<div className="text-gray-500">{item.type}</div>}</Option>
-                                        )
-                                    })}
-                                </Select>
-                            </div>
-                            }
-                        </div>
+                        
 
                         {/*Roof Material*/}
                         <div className="flex flex-row items-center">
@@ -234,7 +180,7 @@ const CE_Notes = () => {
                         </div>
 
                         {/*2x2 Truss*/}
-                        <div className="flex flex-row justify-between items-center">
+                        {/* <div className="flex flex-row justify-between items-center">
                             <Typography variant="h5" color='amber'>2x2 Truss</Typography>
                             <div className='flex flex-row'>
                                 <div>
@@ -244,7 +190,7 @@ const CE_Notes = () => {
                                     <Radio color='green' name='truss' label={<Typography className="text-white font-medium">No</Typography>} icon={<Icon/>}/>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
 
                         {/*Trench*/}

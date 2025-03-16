@@ -19,14 +19,14 @@ export default function Home() {
             <Navigate />
             <h1 className="text-3xl font-bold">FINAL AUDIT</h1>
             <UserInfo />
-            <CE_Notes />
+            <Finance />
             <ProjDetails />
-            <CR_Drive />
+            <CE_Notes />
+            <Adders />
+            {/* <CR_Drive />
             <Contract />
             <SiteCapture />
-            <Aurora />
-            <Finance />
-            <Adders />
+            <Aurora /> */}
         </div>
       </GlobalProvider>
     </main>

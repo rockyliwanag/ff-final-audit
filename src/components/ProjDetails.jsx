@@ -101,7 +101,7 @@ const ProjDetails = () => {
                 </AccordionHeader>
                 <AccordionBody>
                     <div className="flex flex-col space-y-2">
-                        <div className='flex flex-row  justify-between items-center'>
+                        {/* <div className='flex flex-row  justify-between items-center'>
                             <Typography variant="h5" color="amber">Title Check</Typography> 
                             <div className='flex flex-row'>
                             <div>
@@ -111,7 +111,7 @@ const ProjDetails = () => {
                                     <Radio color='green' name='titleCheck' label={<Typography className="text-white font-medium">Fail</Typography>} icon={<Icon/>}/>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className='flex flex-row  justify-between items-center'>
                             <Typography variant="h5" color="amber">PTO Pay</Typography> 
                             <div className='flex flex-row'>
@@ -124,7 +124,7 @@ const ProjDetails = () => {
                             </div>
                         </div>
                         <div className='flex flex-row  justify-between items-center'>
-                            <Typography variant="h5" color="amber">Freedom Advantage</Typography> 
+                            <Typography variant="h5" color="amber">Project Support</Typography> 
                             <div className='flex flex-row'>
                             <div>
                                     <Radio color='green' name='freedomAdvantage' label={<Typography className="text-white font-medium">Yes</Typography>} icon={<Icon/>}/>
@@ -148,7 +148,7 @@ const ProjDetails = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex flex-row  justify-between items-center'>
+                        {/* <div className='flex flex-row  justify-between items-center'>
                             <Typography variant="h5" color="amber">Lead Source</Typography> 
                             <div className='flex flex-row'>
                                 <div>
@@ -158,7 +158,7 @@ const ProjDetails = () => {
                                     <Radio color='green' name='roofWork' label={<Typography className="text-white font-medium">Freedom</Typography>} icon={<Icon/>}/>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className='flex flex-row  justify-between items-center'>
                             <Typography variant="h5" color="amber">Smart Home</Typography> 
                             <div className='flex flex-row'>
@@ -195,7 +195,7 @@ const ProjDetails = () => {
                             </div>
                             }
                         </div> */}
-                        <div className="flex flex-row space-x-2">
+                        {/* <div className="flex flex-row space-x-2">
                             <Input 
                                 className='text-white' 
                                 variant='standard' 
@@ -206,7 +206,7 @@ const ProjDetails = () => {
                                 value={utility} 
                                 onChange={(e) => setUtility(e.target.value)}/>
                             <PasteButton onPaste={() => handlePaste(setUtility)} />
-                        </div>
+                        </div> */}
                         <div className="">
                             <Textarea color='green' className='text-white' name='notes' label={<div className='text-green-300'>Additional Notes</div>} />
                         </div>
