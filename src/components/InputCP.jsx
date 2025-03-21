@@ -1,6 +1,6 @@
 'use client';
-
-const InputCP = ({inputValue, setInputValue, variant }) => {
+import { Typography, Input } from "@material-tailwind/react"
+const InputCP = ({inputValue, setInputValue, inputName, variant }) => {
 
     // Function to copy the input value to clipboard
     const copyToClipboard = () => {
@@ -30,10 +30,10 @@ const InputCP = ({inputValue, setInputValue, variant }) => {
                 </div>
             :
             <div className="flex flex-row gap-x-4">
-                <input
+                <Input
                     className="text-black p-2"
                     type={variant}
-                    name={inputValue} 
+                    name={inputName} 
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                 />

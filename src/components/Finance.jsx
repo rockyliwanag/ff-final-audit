@@ -11,6 +11,7 @@ import {
     AccordionHeader,
     AccordionBody
 } from '@material-tailwind/react';
+import InputCP from "./InputCP";
 import panels from "@/app/options/panels";
 import inverters from "@/app/options/inverters";
 import batteries from "@/app/options/batteries";
@@ -29,7 +30,8 @@ const Finance = () => {
         escalator, setEscalator,
         solarRate, setSolarRate,
         battery, setBattery,
-        
+        soldProduction, setSoldProduction,
+        productionGuarantee, setProductionGuarantee
     } = useGlobalContext();
 
     useEffect(() => {
@@ -110,6 +112,7 @@ const Finance = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
                         <div >
                             {isTrueSet &&
                             <div className="flex flex-row space-x-2">
@@ -123,6 +126,9 @@ const Finance = () => {
                                 </Select>
                             </div>
                             }
+                        <div>
+                            <InputCP inputValue={soldProduction} setInputValue={setSoldProduction} variant="number" />
+                            <InputCP inputValue={productionGuarantee} setInputValue={setProductionGuarantee} variant='number' />
                         </div>
                         { financeType === "Purchase" ? 
                             <div> 

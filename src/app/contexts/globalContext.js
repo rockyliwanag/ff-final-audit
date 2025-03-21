@@ -39,9 +39,11 @@ export const GlobalProvider = ({ children }) => {
     const [auPanelQty, setAuPanelQty] = useState("");
     const [auSysSize, setAuSysSize] = useState("");
     const [finalProduction, setFinalProduction] = useState("");
-    const [financeType, setFinanceType] = useState("")
-    const [escalator, setEscalator] = useState("")
-    const [solarRate, setSolarRate] = useState("")
+    const [financeType, setFinanceType] = useState("");
+    const [escalator, setEscalator] = useState();
+    const [solarRate, setSolarRate] = useState();
+    const [soldProduction, setSoldProduction] = useState(0);
+    const [productionGuarantee, setProductionGuarantee] = useState(0)
 
     return (
         <GlobalContext.Provider value={
@@ -82,7 +84,9 @@ export const GlobalProvider = ({ children }) => {
                 finalProduction, setFinalProduction,
                 financeType, setFinanceType,
                 escalator, setEscalator,
-                solarRate, setSolarRate
+                solarRate, setSolarRate,
+                soldProduction, setSoldProduction,
+                productionGuarantee, setProductionGuarantee
             }
         
         }>
