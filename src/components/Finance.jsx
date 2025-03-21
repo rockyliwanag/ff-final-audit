@@ -78,7 +78,7 @@ const Finance = () => {
                         {/*Modules*/}
                         <div className="flex flex-row space-x-2 items-center">
                         <Typography variant="h5" color='amber'>Module</Typography>
-                            <Input className='text-white' type='text' color='green' name='modules' label={<div className='text-green-300'>Module Qty</div>} placeholder='0'/>
+                            <Input className='text-white' type='text' color='green' inputName='modules' label={<div className='text-green-300'>Module Qty</div>} placeholder='0'/>
                             <Select className='text-white' color='green' variant="standard" label={<div className='text-green-300'>Select Module</div>}>
                                 {panels.map((item, idx) => {
                                     return (
@@ -91,7 +91,7 @@ const Finance = () => {
                         {/*Inverter*/}
                         <div className="flex flex-row items-center space-x-2">
                             <Typography className='grow' variant="h5" color='amber'>Inverter</Typography>
-                            <Input className='text-white' color='green'  type='text' name='inverters' label={<div className='text-green-300'>Inverter Qty</div>}  placeholder='0'/>
+                            <Input className='text-white' color='green'  type='text' inputName='inverters' label={<div className='text-green-300'>Inverter Qty</div>}  placeholder='0'/>
                             <Select className='grow' color="green" variant="standard" label={<div className='text-green-300'>Select Inverter</div>}>
                                 {inverters.map((item, idx) => {
                                     return (
@@ -126,63 +126,47 @@ const Finance = () => {
                                 </Select>
                             </div>
                             }
-                        <div>
-                            <InputCP inputValue={soldProduction} setInputValue={setSoldProduction} variant="number" />
-                            <InputCP inputValue={productionGuarantee} setInputValue={setProductionGuarantee} variant='number' />
+                        <div className="flex flex-row space-x-2">
+                            <InputCP 
+                                inputValue={soldProduction} 
+                                setInputValue={setSoldProduction} 
+                                variant="number" 
+                                inputName='Sold Production' />
+                            <InputCP 
+                                inputValue={productionGuarantee} 
+                                setInputValue={setProductionGuarantee} 
+                                variant='number' 
+                                inputName='Production Guarantee' />
                         </div>
                         { financeType === "Purchase" ? 
                             <div> 
                                 <div className="flex flex-row space-x-2">
-                                    <Input 
-                                        variant='standard'
-                                        className="text-white"
-                                        type='text' 
-                                        name='opportunity' 
-                                        label={<div className="text-green-300 font-medium">Opportunity</div>}
-                                        color="green"
-                                        value={opportunity} 
-                                        onChange={(e) => setOpportunity(e.target.value)}
+                                    <InputCP 
+                                        variant='text' 
+                                        inputName='Opportunity'
+                                        inputValue={opportunity} 
+                                        setInputValue={setOpportunity}
                                     />
-                                    <PasteButton onPaste={() => handlePaste(setOpportunity)} />
+                                    <InputCP
+                                        variant='standard'
+                                        inputName='Loan Amount'
+                                        inputValue={loanAmount} 
+                                        setInputValue={setLoanAmount} 
+                                    />
                                 </div>
                                 <div className="flex flex-row space-x-2">
-                                    <Input 
+                                    <InputCP 
                                         variant='standard'
-                                        className="text-white"
-                                        type='text' 
-                                        name='loanAmount' 
-                                        label={<div className="text-green-300 font-medium">Loan Amount</div>}
-                                        color="green"
-                                        value={loanAmount} 
-                                        onChange={(e) => setLoanAmount(e.target.value)}
+                                        inputName='Finance Product' 
+                                        inputValue={loanProduct} 
+                                        setInputValue={setLoanProduct}
                                     />
-                                    <PasteButton onPaste={() => handlePaste(setLoanAmount)} />
-                                </div>
-                                <div className="flex flex-row space-x-2">
-                                    <Input 
+                                    <InputCP 
                                         variant='standard'
-                                        className="text-white"
-                                        type='text' 
-                                        name='loanProduct' 
-                                        label={<div className="text-green-300 font-medium">Loan Product</div>}
-                                        color="green"
-                                        value={loanProduct} 
-                                        onChange={(e) => setLoanProduct(e.target.value)}
+                                        inputName='Dealer Fee' 
+                                        inputValue={dealerFee} 
+                                        setInputValue={setDealerFee}
                                     />
-                                    <PasteButton onPaste={() => handlePaste(setLoanProduct)} />
-                                </div>
-                                <div className="flex flex-row space-x-2">
-                                    <Input 
-                                        variant='standard'
-                                        className="text-white"
-                                        type='text' 
-                                        name='dealerFee' 
-                                        label={<div className="text-green-300 font-medium">Dealer Fee</div>}
-                                        color="green"
-                                        value={dealerFee} 
-                                        onChange={(e) => setDealerFee(e.target.value)}
-                                    />
-                                    <PasteButton onPaste={() => handlePaste(setDealerFee)} />
                                 </div>
                             </div>
                         
