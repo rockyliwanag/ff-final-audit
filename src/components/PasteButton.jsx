@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, IconButton } from '@material-tailwind/react';
-import PasteIcon from '@/assets/PasteIcon';
+import PasteIcon from '@mui/icons-material/ContentPaste'
 
 const PasteButton = ({ onPaste }) => {
   return (
-    <Button variant='text' color='green' type='button' size='sm' onClick={onPaste}>Paste</Button>
+    <IconButton variant='text' color='green' type='button' size='sm' onClick={onPaste}><PasteIcon/></IconButton>
   );
 };
 
