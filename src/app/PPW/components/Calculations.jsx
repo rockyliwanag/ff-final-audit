@@ -1,31 +1,50 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { usePPWContext } from '../../contexts/ppwContext';
+import { Typography } from '@material-tailwind/react';
 
 const Calculations = () => {
-
     const { sysSize,
         otherWork,
         dealerFee,
+        dealerRate,
         freedomAdders,
         gsp,
         soldPpw,
-        baseLine } = usePPWContext();
+        baseLine,
+        ppwCap,
+        newEpc, setNewEpc,
+        soldEpc, setSoldEpc,
+        baselineGsp, setBaselineGsp,
+        soldGsp, setSoldGsp,
+        otherWorkPPW, setOtherWorkPPW
+     } = usePPWContext();
 
-    const baseFive = Number(baseLine) + .05;
-    const newEpc = ((Number(sysSize) * baseFive) + Number(freedomAdders)) / Number(sysSize);
-    const soldEpc = ((Number(sysSize) * soldPpw) + Number(freedomAdders)) / Number(sysSize);
-    const otherWorkPPW = ((Number(freedomAdders) - Number(otherWork)) - Number(gsp)) / Number(sysSize);
+    useEffect(() => {
+        const baseFive = Number(baseLine) + 0.05;
+        const systemSize = Number(sysSize);
+        const frdmAdders = Number(freedomAdders);
+        const soldEPC = Number(soldPpw);
+        const otherWorkAmount = Number(otherWork);
+        const salesPrice = Number(gsp);
+        
+        setNewEpc(((systemSize * baseFive) + frdmAdders) / systemSize);
+        setSoldEpc(((sysSize * soldEPC) + frdmAdders) / sysSize);
+        setOtherWorkPPW(((frdmAdders - otherWorkAmount) - salesPrice) / systemSize);
+        setBaselineGsp(newEpc * systemSize);
+        setSoldGsp(soldEpc * systemSize);
+    }, [sysSize, otherWork, dealerFee, dealerRate, freedomAdders, gsp, soldPpw, baseLine, ppwCap]);
+
     return (
         <div>
-            <h1>Calculations</h1>
-            <h1>New EPC: ${newEpc.toFixed(2)}</h1>
-            <h1>Baseline GSP: ${newEpc * Number(sysSize)}</h1>
-            <h1>Sold EPC: ${soldEpc.toFixed(2)}</h1>
-            <h1>Sold GSP: ${(soldEpc * Number(sysSize)).toFixed(2)}</h1>
-            <h1>Other Work PPW: ${Math.abs(otherWorkPPW.toFixed(2))}</h1>
+            <Typography variant="h5" color="amber">Calculations</Typography>
+            <h1 className='text-gray-400'>New EPC: $<span className='font-extrabold text-white'>{newEpc.toFixed(2).toLocaleString()}</span></h1>
+            <h1 className='text-gray-400'>Baseline GSP: $<span className='font- text-white'>{baselineGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></h1>
+            <h1 className='text-gray-400'>Sold EPC: $<span className='font- text-white'>{soldEpc.toFixed(2).toLocaleString()}</span></h1>
+            <h1 className='text-gray-400'>Sold GSP: $<span className='font- text-white'>{soldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></h1>
+            <h1 className='text-gray-400'>Other Work PPW: $<span className='font- text-white'>{Math.abs(otherWorkPPW).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></h1>
         </div>
-    )
+    );
 }
 
-export default Calculations
+export default Calculations;

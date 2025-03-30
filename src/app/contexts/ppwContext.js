@@ -14,6 +14,12 @@ export const PPWProvider = ({ children }) => {
     const [baseLine, setBaseLine] = useState(0);
     const [ppwCap, setPpwCap] = useState(0);
     const [financeWith, setFinanceWith] = useState(0);
+    const [newEpc, setNewEpc] = useState(0);
+    const [soldEpc, setSoldEpc] = useState(0);
+    const [baselineGsp, setBaselineGsp] = useState(0);
+    const [soldGsp, setSoldGsp] = useState(0);
+    const [otherWorkPPW, setOtherWorkPPW] = useState(0);
+    const [otherWorkType, setOtherWorkType] = useState('');
 
     return (
         <PPWContext.Provider value={
@@ -28,6 +34,12 @@ export const PPWProvider = ({ children }) => {
                 ppwCap, setPpwCap, 
                 baseLine, setBaseLine,
                 financeWith, setFinanceWith,
+                newEpc, setNewEpc,
+                soldEpc, setSoldEpc,
+                baselineGsp, setBaselineGsp,
+                soldGsp, setSoldGsp,
+                otherWorkPPW, setOtherWorkPPW,
+                otherWorkType, setOtherWorkType
             }}>
             {children}
         </PPWContext.Provider>

@@ -4,6 +4,7 @@ import Navigate from '../../components/Navigation';
 import CalcInputs from './components/CalcInputs';
 import Calculations from './components/Calculations';
 import { PPWProvider } from '../contexts/ppwContext';
+import Resolutions from './components/Resolutions';
 
 export default function PPW() {
 
@@ -13,7 +14,10 @@ export default function PPW() {
                 <div className='flex flex-col gap-y-2'>
                     <Navigate />
                     <CalcInputs />
-                    <Calculations />
+                    <div className='flex flex-row items-center justify-between gap-x-4'>
+                        <Calculations />
+                        <Resolutions />
+                    </div>
                 </div>
             </PPWProvider>
         </main>
