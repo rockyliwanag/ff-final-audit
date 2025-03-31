@@ -1,9 +1,17 @@
 'use client'
 import { usePPWContext } from '../../contexts/ppwContext';
-import { Button, Checkbox } from '@material-tailwind/react';
+import { Button, Typography } from '@material-tailwind/react';
 
 const Resolutions = () => {
-    const { newEpc, soldEpc, baseLine, baselineGsp, soldGsp, otherWorkPPW, otherWorkType, setOtherWorkType  } = usePPWContext();
+    const { newEpc, 
+        soldEpc, 
+        soldPpw,
+        baseLine, 
+        baselineGsp, 
+        soldGsp, 
+        otherWorkPPW, 
+        otherWorkType, 
+        setOtherWorkType  } = usePPWContext();
     const copyToClipboard = (output) => {
         navigator.clipboard.writeText(output)
             .then(() => {
@@ -22,6 +30,10 @@ const Resolutions = () => {
     const baselineHandler = () => {
         const baselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the EPC to the following: $${newEPC}`;
         copyToClipboard(baselineOutput);
+    };
+    const soldEpcHandler = () => {
+        const soldEpcOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the EPC to the following: $${soldEpc.toFixed(2).toLocaleString()}`;
+        copyToClipboard(soldEpcOutput);
     };
     const otherWorkHandler = () => {
         let workTypeDescription = "";
@@ -46,10 +58,10 @@ const Resolutions = () => {
     
 
     return (
-        <div className='flex flex-col gap-y-4'>
-            <h1 className='text-amber-500'>Resolutions</h1>
+        <div className='flex flex-col gap-y-2'>
+            <Typography variant='h5'color='amber'>Resolutions</Typography>
             <Button onClick={baselineHandler}>Baseline</Button>
-            <Button>Sold Net PPW</Button>
+            <Button onClick={soldEpcHandler}>Sold Net PPW</Button>
                 <div className="flex flex-row gap-x-1.5">
                     <input
                         type="radio"
