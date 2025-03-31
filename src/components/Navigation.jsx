@@ -9,9 +9,9 @@ const Navigation = () => {
                 <li>
                     <Link href="/">Final-Audit</Link>
                 </li>
-                <li>
+                {/* <li>
                     <Link href="/notes">Sunnova-Sticky</Link>
-                </li>
+                </li> */}
                 <li>
                     <Link href="/PPW">PPW</Link>
                 </li>

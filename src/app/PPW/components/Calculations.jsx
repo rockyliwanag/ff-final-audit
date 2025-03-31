@@ -38,11 +38,26 @@ const Calculations = () => {
     return (
         <div>
             <Typography variant="h5" color="amber">Calculations</Typography>
-            <h1 className='text-gray-400'>New EPC: $<span className='font-extrabold text-white'>{newEpc.toFixed(2).toLocaleString()}</span></h1>
-            <h1 className='text-gray-400'>Baseline GSP: $<span className='font- text-white'>{baselineGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></h1>
-            <h1 className='text-gray-400'>Sold EPC: $<span className='font- text-white'>{soldEpc.toFixed(2).toLocaleString()}</span></h1>
-            <h1 className='text-gray-400'>Sold GSP: $<span className='font- text-white'>{soldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></h1>
-            <h1 className='text-gray-400'>Other Work PPW: $<span className='font- text-white'>{Math.abs(otherWorkPPW).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></h1>
+            <h1 className='text-gray-400'>New EPC: 
+                <span className='font-extrabold text-white'>
+                ${newEpc.toFixed(2).toLocaleString()}
+            </span></h1>
+            <h1 className='text-gray-400'>Baseline GSP: 
+                <span className='font-extrabold text-white'>
+                ${baselineGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span></h1>
+            <h1 className='text-gray-400'>Sold EPC: 
+                <span className='font-extrabold text-white'>
+                ${soldEpc.toFixed(2).toLocaleString()}
+            </span></h1>
+            <h1 className='text-gray-400'>Sold GSP: 
+                <span className='font-extrabold text-white'>
+                ${soldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span></h1>
+            <h1 className='text-gray-400'>Other Work PPW: 
+                <span className='font-extrabold text-white'>
+                ${Math.abs(otherWorkPPW).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span></h1>
         </div>
     );
 }

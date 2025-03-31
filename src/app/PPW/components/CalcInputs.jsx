@@ -21,7 +21,7 @@ const CalcInputs = () => {
   return (
     <div>
       <div className='flex flex-col gap-y-4'>
-        <div className='flex flex-row'>
+        <div className='flex flex-row justify-center items-center'>
           <div>
             <Radio name='finance' color='green' label={<Typography className="text-white font-medium">Purchase</Typography>} icon={<Icon/>} onChange={() => setFinanceWith("Purchase")}/>
           </div>
@@ -29,20 +29,38 @@ const CalcInputs = () => {
             <Radio name='finance' color='green' label={<Typography className="text-white font-medium">TPO</Typography>} icon={<Icon/>} onChange={() => setFinanceWith("TPO")}/>
           </div>
         </div>
-        <div className='flex flex-wrap flex-row justify-between gap-4'>
-          <InputCP inputValue={sysSize} setInputValue={setSysSize} variant="number" inputName='System Size' />
-          <InputCP inputValue={otherWork} setInputValue={setOtherWork} variant="number" inputName='Other Work' />
-          { financeWith === "Purchase" &&
+        <div className="flex flex-wrap gap-4">
+          <div className="w-full sm:w-[calc(50%-1rem)] min-w-[200px]">
+            <InputCP inputValue={sysSize} setInputValue={setSysSize} variant="number" inputName="System Size" />
+          </div>
+          <div className="w-full sm:w-[calc(50%-1rem)] min-w-[200px]">
+            <InputCP inputValue={otherWork} setInputValue={setOtherWork} variant="number" inputName="Other Work" />
+          </div>
+          {financeWith === "Purchase" && (
             <>
-              <InputCP inputValue={dealerFee} setInputValue={setDealerFee} variant="number" inputName='Dealer Fee' />
-              <InputCP inputValue={dealerRate} setInputValue={setDealerRate} variant="number" inputName='Dealer Rate' />
+              <div className="w-full sm:w-[calc(50%-1rem)] min-w-[200px]">
+                <InputCP inputValue={dealerFee} setInputValue={setDealerFee} variant="number" inputName="Dealer Fee" />
+              </div>
+              <div className="w-full sm:w-[calc(50%-1rem)] min-w-[200px]">
+                <InputCP inputValue={dealerRate} setInputValue={setDealerRate} variant="number" inputName="Dealer Rate" />
+              </div>
             </>
-          }
-          <InputCP inputValue={freedomAdders} setInputValue={setFreedomAdders} variant="number" inputName='Freedom Adders' />
-          <InputCP inputValue={gsp} setInputValue={setGsp} variant="number" inputName='GSP'/>
-          <InputCP inputValue={Number(baseLine)} setInputValue={setBaseLine} variant="number" inputName='Baseline' />
-          <InputCP inputValue={soldPpw} setInputValue={setSoldPpw} variant="number" inputName='Sold PPW' />
-          <InputCP inputValue={ppwCap} setInputValue={setPpwCap} variant="number" inputName='PPW Cap' />
+          )}
+          <div className="w-full sm:w-[calc(50%-1rem)] min-w-[200px]">
+            <InputCP inputValue={freedomAdders} setInputValue={setFreedomAdders} variant="number" inputName="Freedom Adders" />
+          </div>
+          <div className="w-full sm:w-[calc(50%-1rem)] min-w-[200px]">
+            <InputCP inputValue={gsp} setInputValue={setGsp} variant="number" inputName="GSP" />
+          </div>
+          <div className="w-full sm:w-[calc(50%-1rem)] min-w-[200px]">
+            <InputCP inputValue={Number(baseLine)} setInputValue={setBaseLine} variant="number" inputName="Baseline" />
+          </div>
+          <div className="w-full sm:w-[calc(50%-1rem)] min-w-[200px]">
+            <InputCP inputValue={soldPpw} setInputValue={setSoldPpw} variant="number" inputName="Sold PPW" />
+          </div>
+          <div className="w-full sm:w-[calc(50%-1rem)] min-w-[200px]">
+            <InputCP inputValue={ppwCap} setInputValue={setPpwCap} variant="number" inputName="PPW Cap" />
+          </div>
         </div>
       </div>
     </div>
