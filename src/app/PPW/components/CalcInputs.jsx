@@ -26,7 +26,7 @@ const CalcInputs = () => {
             <Radio name='finance' color='green' label={<Typography className="text-white font-medium">Purchase</Typography>} icon={<Icon/>} onChange={() => setFinanceWith("Purchase")}/>
           </div>
           <div>
-            <Radio name='finance' color='green' label={<Typography className="text-white font-medium">TPO</Typography>} icon={<Icon/>} onChange={() => setFinanceWith("TPO")}/>
+            <Radio defaultChecked name='finance' color='green' label={<Typography className="text-white font-medium">TPO</Typography>} icon={<Icon/>} onChange={() => setFinanceWith("TPO")}/>
           </div>
         </div>
         <div className="flex flex-wrap gap-3">

@@ -6,7 +6,8 @@ const Resolutions = () => {
     const { newEpc, 
         soldEpc, 
         soldPpw,
-        baseLine, 
+        baseLine,
+        financeWith, 
         baselineGsp, 
         soldGsp, 
         otherWorkPPW, 
@@ -59,10 +60,14 @@ const Resolutions = () => {
 
     return (
         <div className='flex flex-col gap-y-2'>
-            <Typography variant='h5'color='amber'>Resolutions</Typography>
+            {financeWith === "TPO" ? (
+                <Typography variant='h5'color='amber'>TPO Resolutions</Typography>
+            ) : (
+                <Typography variant='h5'color='amber'>Purchase Resolutions</Typography>
+            )}
             <Button onClick={baselineHandler}>Baseline</Button>
             <Button onClick={soldEpcHandler}>Sold Net PPW</Button>
-                <div className="flex flex-row gap-x-1.5">
+                <div className="flex flex-row gap-x-1.5 text-xs">
                     <input
                         type="radio"
                         name="otherWorkType"

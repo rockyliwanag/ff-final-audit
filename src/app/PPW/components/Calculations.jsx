@@ -55,44 +55,44 @@ const Calculations = () => {
 
             { financeWith === "TPO" ? (
                 <>
-                    <h1 className='text-gray-400'>New TPO EPC: 
-                        <span className='font-extrabold text-white'>
+                    <h1 className='text-gray-400 text-sm font-extrabold '>New TPO EPC: 
+                        <span className='text-white text-base font-medium'>
                             ${newEpc.toFixed(2).toLocaleString()}
                         </span>
                     </h1>
-                    <h1 className='text-gray-400'>Baseline TPO GSP: 
-                        <span className='font-extrabold text-white'>
+                    <h1 className='text-gray-400 text-sm font-extrabold '>Baseline TPO GSP: 
+                        <span className='text-white text-base font-medium'>
                             ${baselineGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </span>
                     </h1>
                 </>)
              : (
                 <>
-                    <h1 className='text-gray-400'>New Purchase EPC: 
-                        <span className='font-extrabold text-white'>
+                    <h1 className='text-gray-400 text-sm font-extrabold '>New Purchase EPC: 
+                        <span className='text-white text-base font-medium'>
                             ${newEpc.toFixed(2).toLocaleString()}
                         </span>
                     </h1>
-                    <h1 className='text-gray-400'>Baseline Purchase GSP: 
-                        <span className='font-extrabold text-white'>
+                    <h1 className='text-gray-400 text-sm font-extrabold '>Baseline Purchase GSP: 
+                        <span className='text-white text-base font-medium'>
                             ${purchaseGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </span>
                     </h1>
                 </>
             )}
 
-            <h1 className='text-gray-400'>Sold EPC: 
-                <span className='font-extrabold text-white'>
+            <h1 className='text-gray-400 text-sm font-extrabold '>Sold EPC: 
+                <span className='text-white text-base font-medium'>
                     ${soldEpc.toFixed(2).toLocaleString()}
                 </span>
             </h1>
-            <h1 className='text-gray-400'>Sold GSP: 
-                <span className='font-extrabold text-white'>
+            <h1 className='text-gray-400 text-sm font-extrabold '>Sold GSP: 
+                <span className='text-white text-base font-medium'>
                     ${soldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
             </h1>
-            <h1 className='text-gray-400'>Other Work PPW: 
-                <span className='font-extrabold text-white'>
+            <h1 className='text-gray-400 text-sm font-extrabold '>Other Work PPW: 
+                <span className='text-white text-base font-medium'>
                     ${Math.abs(otherWorkPPW).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
             </h1>

@@ -13,7 +13,7 @@ export const PPWProvider = ({ children }) => {
     const [soldPpw, setSoldPpw] = useState(0);
     const [baseLine, setBaseLine] = useState(0);
     const [ppwCap, setPpwCap] = useState(0);
-    const [financeWith, setFinanceWith] = useState(0);
+    const [financeWith, setFinanceWith] = useState("TPO");
     const [newEpc, setNewEpc] = useState(0);
     const [soldEpc, setSoldEpc] = useState(0);
     const [baselineGsp, setBaselineGsp] = useState(0);
