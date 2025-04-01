@@ -22,7 +22,7 @@ export const PPWProvider = ({ children }) => {
     const [otherWorkType, setOtherWorkType] = useState('');
     const [purchaseGsp, setPurchaseGsp] = useState(0);
     const [purchaseEpc, setPurchaseEpc] = useState(0);
-
+    const [hicState, setHicState] = useState(false);
     return (
         <PPWContext.Provider value={
             { 
@@ -44,6 +44,7 @@ export const PPWProvider = ({ children }) => {
                 otherWorkType, setOtherWorkType,
                 purchaseGsp, setPurchaseGsp,
                 purchaseEpc, setPurchaseEpc,
+                hicState, setHicState
             }}>
             {children}
         </PPWContext.Provider>

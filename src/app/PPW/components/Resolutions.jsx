@@ -9,7 +9,9 @@ const Resolutions = () => {
         baseLine,
         financeWith, 
         baselineGsp, 
-        soldGsp, 
+        soldGsp,
+        purchaseGsp,
+        hicState, 
         otherWorkPPW, 
         otherWorkType, 
         setOtherWorkType  } = usePPWContext();
@@ -29,11 +31,16 @@ const Resolutions = () => {
     
 
     const baselineHandler = () => {
+        
         const baselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the EPC to the following: $${newEPC}`;
-        copyToClipboard(baselineOutput);
+        const purchaseOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the system price to the following: $${baselineGsp.toFixed(2).toLocaleString()}`;
+
+        financeWith === "TPO" && !hicState ? copyToClipboard(baselineOutput) : copyToClipboard(purchaseOutput);
     };
     const soldEpcHandler = () => {
         const soldEpcOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the EPC to the following: $${soldEpc.toFixed(2).toLocaleString()}`;
+        const purchaseSoldOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the system price to the following: $${purchaseGsp.toFixed(2).toLocaleString()}`;
+        financeWith === "TPO" && !hicState ? copyToClipboard(soldEpcOutput) : copyToClipboard(purchaseSoldOutput);
         copyToClipboard(soldEpcOutput);
     };
     const otherWorkHandler = () => {
@@ -65,8 +72,8 @@ const Resolutions = () => {
             ) : (
                 <Typography variant='h5'color='amber'>Purchase Resolutions</Typography>
             )}
-            <Button onClick={baselineHandler}>Baseline</Button>
-            <Button onClick={soldEpcHandler}>Sold Net PPW</Button>
+            <Button onClick={baselineHandler}>{hicState === true ? 'HIC Baseline' : 'Baseline'}</Button>
+            <Button onClick={soldEpcHandler}>{hicState === true ? 'HIC Sold PPW' : 'Sold PPW'}</Button>
                 <div className="flex flex-row gap-x-1.5 text-xs">
                     <input
                         type="radio"
@@ -87,7 +94,7 @@ const Resolutions = () => {
                         onChange={() => setOtherWorkType("Tree")}
                     /> Tree
             </div>
-                <Button onClick={otherWorkHandler}>Other Work</Button>
+                <Button onClick={otherWorkHandler}>{hicState === true ? 'HIC Other Work' : 'Other Work'}</Button>
         </div>
     )
 }

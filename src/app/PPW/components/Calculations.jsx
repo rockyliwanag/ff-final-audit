@@ -12,6 +12,8 @@ const Calculations = () => {
         financeWith,
         gsp,
         soldPpw,
+        hicState,
+        setHicState,
         baseLine,
         ppwCap,
         newEpc, setNewEpc,
@@ -33,11 +35,18 @@ const Calculations = () => {
         const purchasePrice = Number(purchaseGsp);
         const dealerFee = Number(purchaseEpc);
         setNewEpc(((systemSize * baseFive) + frdmAdders) / systemSize);
-        setSoldEpc(((sysSize * soldEPC) + frdmAdders) / sysSize);
+        setSoldEpc(((systemSize * soldEPC) + frdmAdders) / systemSize);
         setOtherWorkPPW(((frdmAdders - otherWorkAmount) - salesPrice) / systemSize);
         setBaselineGsp(newEpc * systemSize);
         setSoldGsp(soldEpc * systemSize);
-        setPurchaseGsp((((systemSize * baseFive) + (frdmAdders - dealerFee))/ dealerRate) - 1 )
+        setPurchaseGsp( () => {
+            const a = systemSize * baseFive
+            const b = frdmAdders - dealerFee
+            const c = ((a + b) / dealerRate)
+            return c;
+        })
+        setPurchaseEpc((systemSize * baseFive) + (frdmAdders - dealerFee));
+        setHicState(newEpc > baseLine && newEpc < ppwCap ? true : false);
     }, [
         sysSize, 
         otherWork, 
@@ -47,7 +56,9 @@ const Calculations = () => {
         gsp, 
         soldPpw, 
         baseLine, 
-        ppwCap]);
+        ppwCap,
+        hicState
+    ]);
 
     return (
         <div className='flex flex-col gap-y-4'>
