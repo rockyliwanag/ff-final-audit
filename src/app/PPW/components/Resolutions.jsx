@@ -9,9 +9,10 @@ const Resolutions = () => {
         baseLine,
         financeWith, 
         baselineGsp, 
-        soldGsp,
+        purchaseSoldGsp,
         purchaseGsp,
-        hicState, 
+        hicAState, 
+        hicBState, 
         otherWorkPPW, 
         otherWorkType, 
         setOtherWorkType  } = usePPWContext();
@@ -33,15 +34,15 @@ const Resolutions = () => {
     const baselineHandler = () => {
         
         const baselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the EPC to the following: $${newEPC}`;
-        const purchaseOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the system price to the following: $${baselineGsp.toFixed(2).toLocaleString()}`;
+        const purchaseOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the system price to the following: $${purchaseGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
-        financeWith === "TPO" && !hicState ? copyToClipboard(baselineOutput) : copyToClipboard(purchaseOutput);
+        financeWith === "TPO" ? copyToClipboard(baselineOutput) : copyToClipboard(purchaseOutput);
     };
     const soldEpcHandler = () => {
         const soldEpcOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the EPC to the following: $${soldEpc.toFixed(2).toLocaleString()}`;
-        const purchaseSoldOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the system price to the following: $${purchaseGsp.toFixed(2).toLocaleString()}`;
-        financeWith === "TPO" && !hicState ? copyToClipboard(soldEpcOutput) : copyToClipboard(purchaseSoldOutput);
-        copyToClipboard(soldEpcOutput);
+        const purchaseSoldOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the system price to the following: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+        financeWith === "TPO" ? copyToClipboard(soldEpcOutput) : copyToClipboard(purchaseSoldOutput);
     };
     const otherWorkHandler = () => {
         let workTypeDescription = "";
@@ -72,31 +73,33 @@ const Resolutions = () => {
             ) : (
                 <Typography variant='h5'color='amber'>Purchase Resolutions</Typography>
             )}
-            <Button onClick={baselineHandler}>{hicState === true ? 'HIC Baseline' : 'Baseline'}</Button>
-            <Button onClick={soldEpcHandler}>{hicState === true ? 'HIC Sold PPW' : 'Sold PPW'}</Button>
-                <div className="flex flex-row gap-x-1.5 text-xs">
-                    <input
-                        type="radio"
-                        name="otherWorkType"
-                        value="Roof"
-                        onChange={() => setOtherWorkType("Roof")}
-                    /> Roof
-                    <input
-                        type="radio"
-                        name="otherWorkType"
-                        value="Electric"
-                        onChange={() => setOtherWorkType("Electric")}
-                    /> Electric
-                    <input
-                        type="radio"
-                        name="otherWorkType"
-                        value="Tree"
-                        onChange={() => setOtherWorkType("Tree")}
-                    /> Tree
+            <Button onClick={baselineHandler}>{hicAState === true ? 'HIC Baseline' : 'Baseline'}</Button>
+            <Button onClick={soldEpcHandler}>{hicBState === true ? 'HIC Sold PPW' : 'Sold PPW'}</Button>
+            <div className="flex flex-row gap-x-1.5 text-xs">
+                <input
+                    type="radio"
+                    name="otherWorkType"
+                    value="Roof"
+                    onChange={() => setOtherWorkType("Roof")}
+                /> Roof
+                <input
+                    type="radio"
+                    name="otherWorkType"
+                    value="Electric"
+                    onChange={() => setOtherWorkType("Electric")}
+                /> Electric
+                <input
+                    type="radio"
+                    name="otherWorkType"
+                    value="Tree"
+                    onChange={() => setOtherWorkType("Tree")}
+                /> Tree
             </div>
-                <Button onClick={otherWorkHandler}>{hicState === true ? 'HIC Other Work' : 'Other Work'}</Button>
+            <Button onClick={otherWorkHandler}>Other Work</Button>
         </div>
     )
 }
 
 export default Resolutions;
+
+

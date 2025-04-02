@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { usePPWContext } from '../../contexts/ppwContext';
 import { Typography } from '@material-tailwind/react';
+import { set } from 'date-fns';
 
 const Calculations = () => {
     const { sysSize,
@@ -12,16 +13,17 @@ const Calculations = () => {
         financeWith,
         gsp,
         soldPpw,
-        hicState,
-        setHicState,
         baseLine,
         ppwCap,
+        hicAState, setHicAState,
+        hicBState, setHicBState,
         newEpc, setNewEpc,
         soldEpc, setSoldEpc,
         baselineGsp, setBaselineGsp,
         soldGsp, setSoldGsp,
         otherWorkPPW, setOtherWorkPPW,
         purchaseGsp, setPurchaseGsp,
+        purchaseSoldGsp, setPurchaseSoldGsp,
         purchaseEpc, setPurchaseEpc
      } = usePPWContext();
 
@@ -29,24 +31,42 @@ const Calculations = () => {
         const baseFive = Number(baseLine) + 0.05;
         const systemSize = Number(sysSize);
         const frdmAdders = Number(freedomAdders);
-        const soldEPC = Number(soldPpw);
+        // const soldPricePerWatt = Number(soldPpw);
         const otherWorkAmount = Number(otherWork);
         const salesPrice = Number(gsp);
+        const dealerPercentage = Number(dealerRate);
         const purchasePrice = Number(purchaseGsp);
-        const dealerFee = Number(purchaseEpc);
-        setNewEpc(((systemSize * baseFive) + frdmAdders) / systemSize);
-        setSoldEpc(((systemSize * soldEPC) + frdmAdders) / systemSize);
+        const dealerPrice = Number(dealerFee);
+        setNewEpc(() => {
+            const a =((systemSize * baseFive) + frdmAdders) / systemSize
+            a < ppwCap ? setHicAState(true) : setHicAState(false);
+            return a;
+        });
+        setSoldEpc(() => {
+            const a = ((soldPpw * systemSize) + frdmAdders) / systemSize
+            soldPpw < ppwCap ? setHicBState(true) : setHicBState(false);
+            return a;
+        });
         setOtherWorkPPW(((frdmAdders - otherWorkAmount) - salesPrice) / systemSize);
         setBaselineGsp(newEpc * systemSize);
         setSoldGsp(soldEpc * systemSize);
         setPurchaseGsp( () => {
-            const a = systemSize * baseFive
-            const b = frdmAdders - dealerFee
-            const c = ((a + b) / dealerRate)
-            return c;
+            const a = systemSize * baseFive;
+            const b = frdmAdders - dealerFee;
+            const c = a + b;
+            const d = (dealerPercentage * 100)-1;
+            const e = c/d
+            return e;
+        })
+        setPurchaseSoldGsp( () => {
+            const a = systemSize * soldPpw;
+            const b = frdmAdders - dealerFee;
+            const c = a + b;
+            const d = (dealerPercentage * 100)-1;
+            const e = c/d
+            return e;
         })
         setPurchaseEpc((systemSize * baseFive) + (frdmAdders - dealerFee));
-        setHicState(newEpc > baseLine && newEpc < ppwCap ? true : false);
     }, [
         sysSize, 
         otherWork, 
@@ -57,8 +77,13 @@ const Calculations = () => {
         soldPpw, 
         baseLine, 
         ppwCap,
-        hicState
+        hicAState, 
+        hicBState, 
     ]);
+
+    useEffect(() => {
+
+    }, []);
 
     return (
         <div className='flex flex-col gap-y-4'>
@@ -76,8 +101,8 @@ const Calculations = () => {
                             ${baselineGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </span>
                     </h1>
-                </>)
-             : (
+                </>
+                ) : (
                 <>
                     <h1 className='text-gray-400 text-sm font-extrabold '>New Purchase EPC: 
                         <span className='text-white text-base font-medium'>
@@ -91,24 +116,29 @@ const Calculations = () => {
                     </h1>
                 </>
             )}
-
-            <h1 className='text-gray-400 text-sm font-extrabold '>Sold EPC: 
-                <span className='text-white text-base font-medium'>
-                    ${soldEpc.toFixed(2).toLocaleString()}
-                </span>
-            </h1>
-            <h1 className='text-gray-400 text-sm font-extrabold '>Sold GSP: 
-                <span className='text-white text-base font-medium'>
-                    ${soldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                </span>
-            </h1>
+            <div>
+                <h1 className='text-gray-400 text-sm font-extrabold '>Sold EPC: 
+                    <span className='text-white text-base font-medium'>
+                        ${soldEpc.toFixed(2).toLocaleString()}
+                    </span>
+                </h1>
+                <h1 className='text-gray-400 text-sm font-extrabold '>Sold GSP: 
+                    <span className='text-white text-base font-medium'>
+                        ${soldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </span>
+                </h1>
+            </div>
             <h1 className='text-gray-400 text-sm font-extrabold '>Other Work PPW: 
                 <span className='text-white text-base font-medium'>
                     ${Math.abs(otherWorkPPW).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
             </h1>
+            {console.log(hicAState, hicBState)}
         </div>
     );
 }
 
 export default Calculations;
+
+
+
