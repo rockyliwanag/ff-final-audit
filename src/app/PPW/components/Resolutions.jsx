@@ -35,14 +35,23 @@ const Resolutions = () => {
         
         const baselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the EPC to the following: $${newEPC}`;
         const purchaseOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the system price to the following: $${purchaseGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
+        const hicBaselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to meet the HIC Baseline PPW, adjusting the EPC to the following: $${newEPC}`;
+        const hicPPWOutput = `PPW ~ ($${baseline}/w) Send a Change Order to meet the HIC Baseline PPW, adjusting the system price to the following: $${baselineGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        financeWith === "TPO" && hicAState === true ? copyToClipboard(hicPPWOutput) : financeWith === "TPO" && hicBState === true ? copyToClipboard(hicBaselineOutput) :
         financeWith === "TPO" ? copyToClipboard(baselineOutput) : copyToClipboard(purchaseOutput);
+
     };
     const soldEpcHandler = () => {
         const soldEpcOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the EPC to the following: $${soldEpc.toFixed(2).toLocaleString()}`;
         const purchaseSoldOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the system price to the following: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-        financeWith === "TPO" ? copyToClipboard(soldEpcOutput) : copyToClipboard(purchaseSoldOutput);
+        const hicPurchaseOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the HIC Sold PPW
+        adjusting the system price to the following: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        const hicPurchasePPWOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the HIC Sold PPW, adjusting the EPC to the following: $${soldEpc.toFixed(2).toLocaleString()}`;
+        hicAState === true ? {
+            financeWith === "TPO" ? copyToClipboard(hicPurchasePPWOutput) : copyToClipboard(hicPurchaseOutput)
+            
+        } : {
+            financeWith === "TPO" ? copyToClipboard(purchaseSoldOutput) : copyToClipboard(soldEpcOutput);}
     };
     const otherWorkHandler = () => {
         let workTypeDescription = "";

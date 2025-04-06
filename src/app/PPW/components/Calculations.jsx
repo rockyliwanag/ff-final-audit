@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { usePPWContext } from '../../contexts/ppwContext';
 import { Typography } from '@material-tailwind/react';
-import { set } from 'date-fns';
 
 const Calculations = () => {
     const { sysSize,
@@ -23,50 +22,58 @@ const Calculations = () => {
         soldGsp, setSoldGsp,
         otherWorkPPW, setOtherWorkPPW,
         purchaseGsp, setPurchaseGsp,
-        purchaseSoldGsp, setPurchaseSoldGsp,
-        purchaseEpc, setPurchaseEpc
+        setPurchaseSoldGsp,
      } = usePPWContext();
 
     useEffect(() => {
+        // Convert sysSize to a string and ensure it becomes a thousand value
+        let systemSizeStr = String(sysSize);
+        if (systemSizeStr.includes('.')) {
+            const [integerPart, decimalPart] = systemSizeStr.split('.');
+            if (decimalPart.length === 2) {
+                systemSizeStr = `${integerPart}${decimalPart}0`; // Add a 0 to make it a thousand value
+            } else {
+                systemSizeStr = `${integerPart}${decimalPart}`;
+            }
+        }
+        const systemSize = Number(systemSizeStr); // Convert back to a number
+
         const baseFive = Number(baseLine) + 0.05;
-        const systemSize = Number(sysSize);
         const frdmAdders = Number(freedomAdders);
-        // const soldPricePerWatt = Number(soldPpw);
         const otherWorkAmount = Number(otherWork);
         const salesPrice = Number(gsp);
         const dealerPercentage = Number(dealerRate);
-        const purchasePrice = Number(purchaseGsp);
-        const dealerPrice = Number(dealerFee);
+        // const dealerPrice = Number(dealerFee);
+
         setNewEpc(() => {
-            const a =((systemSize * baseFive) + frdmAdders) / systemSize
-            a < ppwCap ? setHicAState(true) : setHicAState(false);
+            const a = ((systemSize * baseFive) + frdmAdders) / systemSize;
+            a > ppwCap ? setHicAState(true) : setHicAState(false);
             return a;
         });
         setSoldEpc(() => {
-            const a = ((soldPpw * systemSize) + frdmAdders) / systemSize
+            const a = ((soldPpw * systemSize) + frdmAdders) / systemSize;
             soldPpw < ppwCap ? setHicBState(true) : setHicBState(false);
             return a;
         });
         setOtherWorkPPW(((frdmAdders - otherWorkAmount) - salesPrice) / systemSize);
         setBaselineGsp(newEpc * systemSize);
         setSoldGsp(soldEpc * systemSize);
-        setPurchaseGsp( () => {
+        setPurchaseGsp(() => {
             const a = systemSize * baseFive;
             const b = frdmAdders - dealerFee;
             const c = a + b;
-            const d = (dealerPercentage * 100)-1;
-            const e = c/d
+            const d = (dealerPercentage * 100) - 1;
+            const e = c / d;
             return e;
-        })
-        setPurchaseSoldGsp( () => {
+        });
+        setPurchaseSoldGsp(() => {
             const a = systemSize * soldPpw;
             const b = frdmAdders - dealerFee;
             const c = a + b;
-            const d = (dealerPercentage * 100)-1;
-            const e = c/d
+            const d = (dealerPercentage * 100) - 1;
+            const e = c / d;
             return e;
-        })
-        setPurchaseEpc((systemSize * baseFive) + (frdmAdders - dealerFee));
+        });
     }, [
         sysSize, 
         otherWork, 
@@ -80,9 +87,9 @@ const Calculations = () => {
         hicAState, 
         hicBState, 
     ]);
-
+    
     useEffect(() => {
-
+        
     }, []);
 
     return (
@@ -133,7 +140,6 @@ const Calculations = () => {
                     ${Math.abs(otherWorkPPW).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
             </h1>
-            {console.log(hicAState, hicBState)}
         </div>
     );
 }
