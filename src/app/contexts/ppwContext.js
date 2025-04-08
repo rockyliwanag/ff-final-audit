@@ -29,6 +29,8 @@ export const PPWProvider = ({ children }) => {
     const [baselineHic, setBaselineHic] = useState(0);
     const [tpoSoldHic, setTpoSoldHic] = useState(0);
     const [qualifiedFor, setQualifiedFor] = useState(0);
+    const [mosaicBaseline, setMosaicBaseline] = useState(0);
+    const [mosaicSold, setMosaicSold] = useState(0);
     return (
         <PPWContext.Provider value={
             { 
@@ -57,6 +59,8 @@ export const PPWProvider = ({ children }) => {
                 hicAState, setHicAState,
                 hicBState, setHicBState,
                 qualifiedFor, setQualifiedFor,
+                mosaicBaseline, setMosaicBaseline,
+                mosaicSold, setMosaicSold,
             }}>
             {children}
         </PPWContext.Provider>

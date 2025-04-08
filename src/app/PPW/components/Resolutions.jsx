@@ -17,7 +17,10 @@ const Resolutions = () => {
         hicBState, 
         otherWorkPPW, 
         otherWorkType, 
-        setOtherWorkType  } = usePPWContext();
+        setOtherWorkType,
+        mosaicBaseline,
+        mosaicSold,
+    } = usePPWContext();
     const copyToClipboard = (output) => {
         navigator.clipboard.writeText(output)
             .then(() => {
@@ -38,7 +41,7 @@ const Resolutions = () => {
         const baselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the EPC to the following: $${newEPC}`;
         const purchaseOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the system price to the following: $${purchaseGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         const hicBaselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the EPC to the following, additional Cash amount of $${baselineHic.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} required to meet request: $${ppwCap.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        const hicPurchaseOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the system price to the following, additional Cash amount of $${baselineHic.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} required to meet request: $${ppwCap.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        const hicPurchaseOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the system price to the following, additional Cash amount of $${baselineHic.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} required to meet request: $${mosaicBaseline.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         hicAState === true ? financeWith === "TPO" ? copyToClipboard(hicBaselineOutput) : copyToClipboard(hicPurchaseOutput) :
         financeWith === "TPO" ? copyToClipboard(baselineOutput) : copyToClipboard(purchaseOutput);
         console.log("Baseline Handler called", baselineHic);
@@ -46,8 +49,8 @@ const Resolutions = () => {
     const soldEpcHandler = () => {
         const soldEpcOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the EPC to the following: $${soldEpc.toFixed(2).toLocaleString()}`;
         const purchaseSoldOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the system price to the following: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        const hicSoldEpcOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the EPC to the following, additional Cash amount of $${tpoSoldHic.toFixed(2).toLocaleString()} required to meet request: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        const hicPurchaseSoldOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the system price to the following. Additional Cash amount of $${tpoSoldHic.toFixed(2).toLocaleString()} required to meet request: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        const hicSoldEpcOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the EPC to the following, additional Cash amount of $${tpoSoldHic.toFixed(2).toLocaleString()} required to meet request: $${ppwCap.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        const hicPurchaseSoldOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the system price to the following. Additional Cash amount of $${tpoSoldHic.toFixed(2).toLocaleString()} required to meet request: $${mosaicSold.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         hicBState === true ? financeWith === "TPO" ? copyToClipboard(hicSoldEpcOutput) : copyToClipboard(hicPurchaseSoldOutput) :
         financeWith === "TPO" ? copyToClipboard(soldEpcOutput) : copyToClipboard(purchaseSoldOutput);
         console.log("Sold EPC Handler called", tpoSoldHic, hicBState);

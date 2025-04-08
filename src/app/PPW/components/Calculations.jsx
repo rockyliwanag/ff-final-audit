@@ -26,6 +26,8 @@ const Calculations = () => {
         purchaseGsp, setPurchaseGsp,
         highestGsp, setHighestGsp,
         setPurchaseSoldGsp,
+        setMosaicBaseline,
+        setMosaicSold,
      } = usePPWContext();
 
     useEffect(() => {
@@ -81,6 +83,8 @@ const Calculations = () => {
             const e = c / d;
             return e;
         });
+        setMosaicBaseline((purchaseGsp - qualifiedFor)*1.015)
+        setMosaicSold((soldGsp - qualifiedFor)*1.015)
     }, [
         sysSize, 
         otherWork, 
