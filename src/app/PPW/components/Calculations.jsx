@@ -16,12 +16,15 @@ const Calculations = () => {
         ppwCap,
         hicAState, setHicAState,
         hicBState, setHicBState,
+        setBaselineHic,
+        setTpoSoldHic,
         newEpc, setNewEpc,
         soldEpc, setSoldEpc,
         baselineGsp, setBaselineGsp,
         soldGsp, setSoldGsp,
         otherWorkPPW, setOtherWorkPPW,
         purchaseGsp, setPurchaseGsp,
+        highestGsp, setHighestGsp,
         setPurchaseSoldGsp,
      } = usePPWContext();
 
@@ -48,15 +51,19 @@ const Calculations = () => {
         setNewEpc(() => {
             const a = ((systemSize * baseFive) + frdmAdders) / systemSize;
             a > ppwCap ? setHicAState(true) : setHicAState(false);
+            console.log('hicAState', hicAState);
             return a;
         });
         setSoldEpc(() => {
-            const a = ((soldPpw * systemSize) + frdmAdders) / systemSize;
-            soldPpw < ppwCap ? setHicBState(true) : setHicBState(false);
-            return a;
+            const b = ((systemSize * soldPpw) + frdmAdders) / systemSize;
+            b > ppwCap ? setHicBState(true) : setHicBState(false);
+            return b;
         });
         setOtherWorkPPW(((frdmAdders - otherWorkAmount) - salesPrice) / systemSize);
         setBaselineGsp(newEpc * systemSize);
+        setBaselineHic((baselineGsp - highestGsp) * 1.015)
+        setTpoSoldHic((soldGsp - highestGsp)* 1.015);
+        setHighestGsp(ppwCap * systemSize);
         setSoldGsp(soldEpc * systemSize);
         setPurchaseGsp(() => {
             const a = systemSize * baseFive;
@@ -82,6 +89,9 @@ const Calculations = () => {
         freedomAdders, 
         gsp, 
         soldPpw, 
+        soldGsp,
+        highestGsp,
+        newEpc,
         baseLine, 
         ppwCap,
         hicAState, 
@@ -145,6 +155,3 @@ const Calculations = () => {
 }
 
 export default Calculations;
-
-
-

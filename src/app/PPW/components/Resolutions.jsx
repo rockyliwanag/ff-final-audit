@@ -3,12 +3,14 @@ import { usePPWContext } from '../../contexts/ppwContext';
 import { Button, Typography } from '@material-tailwind/react';
 
 const Resolutions = () => {
-    const { newEpc, 
+    const { newEpc,
+        ppwCap, 
         soldEpc, 
         soldPpw,
         baseLine,
         financeWith, 
-        baselineGsp, 
+        baselineHic, 
+        tpoSoldHic,
         purchaseSoldGsp,
         purchaseGsp,
         hicAState, 
@@ -35,42 +37,41 @@ const Resolutions = () => {
         
         const baselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the EPC to the following: $${newEPC}`;
         const purchaseOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the system price to the following: $${purchaseGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        const hicBaselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to meet the HIC Baseline PPW, adjusting the EPC to the following: $${newEPC}`;
-        const hicPPWOutput = `PPW ~ ($${baseline}/w) Send a Change Order to meet the HIC Baseline PPW, adjusting the system price to the following: $${baselineGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        financeWith === "TPO" && hicAState === true ? copyToClipboard(hicPPWOutput) : financeWith === "TPO" && hicBState === true ? copyToClipboard(hicBaselineOutput) :
+        const hicBaselineOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the EPC to the following, additional Cash amount of $${baselineHic.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} required to meet request: $${ppwCap.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        const hicPurchaseOutput = `PPW ~ ($${baseline}/w) Send a Change Order to adjust the system price to the following, additional Cash amount of $${baselineHic.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} required to meet request: $${ppwCap.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        hicAState === true ? financeWith === "TPO" ? copyToClipboard(hicBaselineOutput) : copyToClipboard(hicPurchaseOutput) :
         financeWith === "TPO" ? copyToClipboard(baselineOutput) : copyToClipboard(purchaseOutput);
-
+        console.log("Baseline Handler called", baselineHic);
     };
     const soldEpcHandler = () => {
         const soldEpcOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the EPC to the following: $${soldEpc.toFixed(2).toLocaleString()}`;
         const purchaseSoldOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the system price to the following: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        const hicPurchaseOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the HIC Sold PPW
-        adjusting the system price to the following: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-        const hicPurchasePPWOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the HIC Sold PPW, adjusting the EPC to the following: $${soldEpc.toFixed(2).toLocaleString()}`;
-        hicAState === true ? {
-            financeWith === "TPO" ? copyToClipboard(hicPurchasePPWOutput) : copyToClipboard(hicPurchaseOutput)
-            
-        } : {
-            financeWith === "TPO" ? copyToClipboard(purchaseSoldOutput) : copyToClipboard(soldEpcOutput);}
+        const hicSoldEpcOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the EPC to the following, additional Cash amount of $${tpoSoldHic.toFixed(2).toLocaleString()} required to meet request: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        const hicPurchaseSoldOutput = `PPW ~ ($${soldPpw}/w) Send a Change Order to meet the Sold Net PPW, adjusting the system price to the following. Additional Cash amount of $${tpoSoldHic.toFixed(2).toLocaleString()} required to meet request: $${purchaseSoldGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        hicBState === true ? financeWith === "TPO" ? copyToClipboard(hicSoldEpcOutput) : copyToClipboard(hicPurchaseSoldOutput) :
+        financeWith === "TPO" ? copyToClipboard(soldEpcOutput) : copyToClipboard(purchaseSoldOutput);
+        console.log("Sold EPC Handler called", tpoSoldHic, hicBState);
     };
+    // Handler for other work
+        
     const otherWorkHandler = () => {
         let workTypeDescription = "";
 
         // Use a switch statement to determine the type of work
         switch (otherWorkType) {
             case "Roof":
-                workTypeDescription = "roof";
+                workTypeDescription = "Roof";
                 break;
             case "Electric":
-                workTypeDescription = "electrical";
+                workTypeDescription = "Electrical";
                 break;
             case "Tree":
-                workTypeDescription = "tree";
+                workTypeDescription = "Tree";
                 break;
             default:
-                workTypeDescription = "other"; // Fallback for unexpected values
+                workTypeDescription = "Other"; // Fallback for unexpected values
         }
-        const otherWorkOutput = `PPW ~ ($${otherWorkPpw}/w) Homeowner to complete the ${workTypeDescription} work independently. A quote from the subcontractor of the homeowner's choice will need to be provided to remove the adder from the SOW.`;
+        const otherWorkOutput = `PPW ~ ($${otherWorkPpw}/w) Homeowner to complete the ${workTypeDescription} Work independently. A quote from the subcontractor of the homeowner's choice will need to be provided to remove the adder from the SOW.`;
         copyToClipboard(otherWorkOutput);
     };
     
