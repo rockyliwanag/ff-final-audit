@@ -11,10 +11,12 @@ const CalcInputs = () => {
         dealerFee, setDealerFee,
         dealerRate, setDealerRate, 
         freedomAdders, setFreedomAdders,
-        financeWith, setFinanceWith, 
+        financeWith, setFinanceWith,
+        hicAState, hicBState, 
         gsp, setGsp, 
         soldPpw, setSoldPpw, 
         baseLine, setBaseLine,
+        qualifiedFor, setQualifiedFor,
         ppwCap, setPpwCap
        } = usePPWContext();
 
@@ -66,6 +68,12 @@ const CalcInputs = () => {
           <div className="w-[calc25%-1rem)] min-w-[150px]">
             <InputCP inputValue={ppwCap} setInputValue={setPpwCap} variant="number" inputName="PPW Cap" />
           </div>
+          {financeWith === "Purchase" && hicAState && hicBState && (
+            <>
+              <div className="w-[calc25%-1rem)] min-w-[150px]">
+                <InputCP inputValue={Number(qualifiedFor)} setInputValue={setQualifiedFor} variant="number" inputName="Qualified For" />
+              </div>
+            </>)}
         </div>
       </div>
     </div>
