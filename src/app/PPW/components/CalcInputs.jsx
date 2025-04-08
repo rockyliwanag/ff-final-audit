@@ -52,10 +52,10 @@ const CalcInputs = () => {
             </>
           )}
           <div className="w-[calc25%-1rem)] min-w-[150px]">
-            <InputCP inputValue={freedomAdders} setInputValue={setFreedomAdders} variant="number" inputName="Freedom Adders" />
+            <InputCP inputValue={gsp} setInputValue={setGsp} variant="number" inputName="GSP" />
           </div>
           <div className="w-[calc25%-1rem)] min-w-[150px]">
-            <InputCP inputValue={gsp} setInputValue={setGsp} variant="number" inputName="GSP" />
+            <InputCP inputValue={freedomAdders} setInputValue={setFreedomAdders} variant="number" inputName="Freedom Adders" />
           </div>
           <div className="w-[calc25%-1rem)] min-w-[150px]">
             <InputCP inputValue={Number(baseLine)} setInputValue={setBaseLine} variant="number" inputName="Baseline" />

@@ -107,7 +107,7 @@ const Calculations = () => {
             <Typography variant="h5" color="amber">Calculations</Typography>
 
             { financeWith === "TPO" ? (
-                <>
+                <div className='border-b-2 border-gray-600 pb-2'>
                     <h1 className='text-gray-400 text-sm font-extrabold '>New TPO EPC: 
                         <span className='text-white text-base font-medium'>
                             ${newEpc.toFixed(2).toLocaleString()}
@@ -118,9 +118,9 @@ const Calculations = () => {
                             ${baselineGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </span>
                     </h1>
-                </>
+                </div>
                 ) : (
-                <>
+                <div className='border-b-2 border-gray-600 pb-2'>
                     <h1 className='text-gray-400 text-sm font-extrabold '>New Purchase EPC: 
                         <span className='text-white text-base font-medium'>
                             ${newEpc.toFixed(2).toLocaleString()}
@@ -131,9 +131,9 @@ const Calculations = () => {
                             ${purchaseGsp.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </span>
                     </h1>
-                </>
+                </div>
             )}
-            <div>
+            <div className='border-b-2 border-gray-600 pb-2'>
                 <h1 className='text-gray-400 text-sm font-extrabold '>Sold EPC: 
                     <span className='text-white text-base font-medium'>
                         ${soldEpc.toFixed(2).toLocaleString()}
@@ -145,11 +145,13 @@ const Calculations = () => {
                     </span>
                 </h1>
             </div>
-            <h1 className='text-gray-400 text-sm font-extrabold '>Other Work PPW: 
-                <span className='text-white text-base font-medium'>
-                    ${Math.abs(otherWorkPPW).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                </span>
-            </h1>
+            <div className='border-b-2 border-gray-600 pb-2'>
+                <h1 className='text-gray-400 text-sm font-extrabold '>Other Work PPW: 
+                    <span className='text-white text-base font-medium'>
+                        ${Math.abs(otherWorkPPW).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </span>
+                </h1>
+            </div>
         </div>
     );
 }
