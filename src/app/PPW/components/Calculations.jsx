@@ -28,6 +28,7 @@ const Calculations = () => {
         setPurchaseSoldGsp,
         setMosaicBaseline,
         setMosaicSold,
+        qualifiedFor
      } = usePPWContext();
 
     useEffect(() => {
