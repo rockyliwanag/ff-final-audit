@@ -9,7 +9,7 @@ import Resolutions from './components/Resolutions';
 export default function PPW() {
 
     return (
-        <main className='flex min-h-screen flex-col items-center justify-between p-24'>
+        <main className='flex min-h-screen flex-col items-center justify-between p-24 w-[610px]'>
             <PPWProvider>
                 <div className='flex flex-col gap-y-2'>
                     <Navigate />
