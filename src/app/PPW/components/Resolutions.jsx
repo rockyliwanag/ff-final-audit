@@ -1,6 +1,8 @@
 'use client'
+import React, { useState } from 'react';
 import { usePPWContext } from '../../contexts/ppwContext';
-import { Button, Typography } from '@material-tailwind/react';
+import { Button, Typography, Popover, PopoverHandler, PopoverContent} from '@material-tailwind/react';
+import ErrorIcon from '@mui/icons-material/error'
 
 const Resolutions = () => {
     const { newEpc,
@@ -21,6 +23,11 @@ const Resolutions = () => {
         mosaicBaseline,
         mosaicSold,
     } = usePPWContext();
+    const [openPopover, setOpenPopover] = useState(false);
+    const triggers = {
+        onMouseEnter: () => setOpenPopover(true),
+        onMouseLeave: () => setOpenPopover(false),
+    };
     const copyToClipboard = (output) => {
         navigator.clipboard.writeText(output)
             .then(() => {
@@ -34,6 +41,11 @@ const Resolutions = () => {
     const baseline = Number(baseLine) + 0.05;
     const newEPC = Number(newEpc).toFixed(2).toLocaleString();
     const otherWorkPpw = Math.abs(otherWorkPPW).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+
+    const hicHandler = () => {
+        const hicOutput = `\nPlease note, one or more resolution options require additional Cash funds. Please review and select the option as needed to approve a Home Improvement Contract (HIC) be sent to the customer.`;
+        copyToClipboard(hicOutput);
+    }
     
 
     const baselineHandler = () => {
@@ -86,6 +98,22 @@ const Resolutions = () => {
             ) : (
                 <Typography variant='h5'color='amber'>Purchase Resolutions</Typography>
             )}
+            {hicAState === true || hicBState === true ? 
+                <div className="mb-2 flex items-center gap-3" onClick={hicHandler}>
+                    <Popover open={openPopover} handler={setOpenPopover}>
+                        <PopoverHandler {...triggers}>
+                            <ErrorIcon />
+                        </PopoverHandler>
+                        <PopoverContent {...triggers} className="z-50 max-w-[26rem]">
+                            <div className="flex flex-col gap-y-2">
+                                <Typography variant="h5" color="amber">HIC Description</Typography>
+                                <div className="flex flex-col gap-y-2">
+                                Please note, one or more resolution options require additional Cash funds. Please review and select the option as needed to approve a Home Improvement Contract (HIC) be sent to the customer.
+                                </div>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
+                </div> : null }
             <Button onClick={baselineHandler}>{hicAState === true ? 'HIC Baseline' : 'Baseline'}</Button>
             <Button onClick={soldEpcHandler}>{hicBState === true ? 'HIC Sold PPW' : 'Sold PPW'}</Button>
             <div className="flex flex-row gap-x-1.5 text-xs">
