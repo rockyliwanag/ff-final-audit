@@ -93,27 +93,30 @@ const Resolutions = () => {
 
     return (
         <div className='flex flex-col gap-y-2'>
-            {financeWith === "TPO" ? (
-                <Typography variant='h5'color='amber'>TPO Resolutions</Typography>
-            ) : (
-                <Typography variant='h5'color='amber'>Purchase Resolutions</Typography>
-            )}
-            {hicAState === true || hicBState === true ? 
-                <div className="mb-2 flex items-center gap-3" onClick={hicHandler}>
-                    <Popover open={openPopover} handler={setOpenPopover}>
-                        <PopoverHandler {...triggers}>
-                            <ErrorIcon />
-                        </PopoverHandler>
-                        <PopoverContent {...triggers} className="z-50 max-w-[26rem]">
-                            <div className="flex flex-col gap-y-2">
-                                <Typography variant="h5" color="amber">HIC Description</Typography>
+            <div className='flex flex-row items-center text-center gap-x-2'>
+                {financeWith === "TPO" ? (
+                    <Typography variant='h5'color='amber'>TPO Resolutions</Typography>
+                ) : (
+                    <Typography variant='h5'color='amber'>Purchase Resolutions</Typography>
+                )}
+                {hicAState === true || hicBState === true ? 
+                    <div className="mb-2 flex items-center align-middle gap-3" onClick={hicHandler}>
+                        <Popover open={openPopover} handler={setOpenPopover}>
+                            <PopoverHandler {...triggers}>
+                                <ErrorIcon />
+                            </PopoverHandler>
+                            <PopoverContent {...triggers} className="z-50 max-w-[20rem]">
                                 <div className="flex flex-col gap-y-2">
-                                Please note, one or more resolution options require additional Cash funds. Please review and select the option as needed to approve a Home Improvement Contract (HIC) be sent to the customer.
+                                    <Typography variant="h5" color="amber">HIC Description</Typography>
+                                    <div className="flex flex-col gap-y-2">
+                                    Please note, one or more resolution options require additional Cash funds. Please review and select the option as needed to approve a Home Improvement Contract (HIC) be sent to the customer. (click to copy)
+                                    </div>
                                 </div>
-                            </div>
-                        </PopoverContent>
-                    </Popover>
-                </div> : null }
+                            </PopoverContent>
+                        </Popover>
+                    </div> : null
+                }
+            </div>
             <Button onClick={baselineHandler}>{hicAState === true ? 'HIC Baseline' : 'Baseline'}</Button>
             <Button onClick={soldEpcHandler}>{hicBState === true ? 'HIC Sold PPW' : 'Sold PPW'}</Button>
             <div className="flex flex-row gap-x-1.5 text-xs">
@@ -142,5 +145,3 @@ const Resolutions = () => {
 }
 
 export default Resolutions;
-
-

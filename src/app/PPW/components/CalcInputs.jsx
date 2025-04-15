@@ -22,7 +22,7 @@ const CalcInputs = () => {
 
   return (
     <div>
-      <div className='flex flex-col gap-y-4'>
+      <div className='flex flex-col gap-y-3'>
         <div className='flex flex-row justify-center items-center'>
           <div>
             <Radio name='finance' color='green' label={<Typography className="text-white font-medium">Purchase</Typography>} icon={<Icon/>} onChange={() => setFinanceWith("Purchase")}/>
@@ -31,19 +31,19 @@ const CalcInputs = () => {
             <Radio defaultChecked name='finance' color='green' label={<Typography className="text-white font-medium">TPO</Typography>} icon={<Icon/>} onChange={() => setFinanceWith("TPO")}/>
           </div>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <div className="w-[calc25%-1rem)] min-w-[150px]">
+        <div className="flex flex-wrap gap-2">
+          <div className="w-[calc10%-1rem)] min-w-[150px]">
             <InputCP inputValue={sysSize} setInputValue={setSysSize} variant="number" inputName="System Size" />
           </div>
-          <div className="w-[calc25%-1rem)] min-w-[150px]">
+          <div className="w-[calc10%-1rem)] min-w-[150px]">
             <InputCP inputValue={otherWork} setInputValue={setOtherWork} variant="number" inputName="Other Work" />
           </div>
           {financeWith === "Purchase" && (
             <>
-              <div className="w-[calc25%-1rem)] min-w-[150px]">
+              <div className="w-[calc10%-1rem)] min-w-[150px]">
                 <InputCP inputValue={dealerFee} setInputValue={setDealerFee} variant="number" inputName="Dealer Fee" />
               </div>
-              <div className="w-[calc25%-1rem)] min-w-[150px]">
+              <div className="w-[calc10%-1rem)] min-w-[150px]">
                 <InputCP
                   inputValue={dealerRate * 100} // Convert to percentage for display
                   setInputValue={(value) => setDealerRate(Number(value) / 100)} // Convert back to decimal for storage
@@ -53,24 +53,24 @@ const CalcInputs = () => {
               </div>
             </>
           )}
-          <div className="w-[calc25%-1rem)] min-w-[150px]">
+          <div className="w-[calc10%-1rem)] min-w-[150px]">
             <InputCP inputValue={gsp} setInputValue={setGsp} variant="number" inputName="GSP" />
           </div>
-          <div className="w-[calc25%-1rem)] min-w-[150px]">
+          <div className="w-[calc10%-1rem)] min-w-[150px]">
             <InputCP inputValue={freedomAdders} setInputValue={setFreedomAdders} variant="number" inputName="Freedom Adders" />
           </div>
-          <div className="w-[calc25%-1rem)] min-w-[150px]">
+          <div className="w-[calc10%-1rem)] min-w-[150px]">
             <InputCP inputValue={Number(baseLine)} setInputValue={setBaseLine} variant="number" inputName="Baseline" />
           </div>
-          <div className="w-[calc25%-1rem)] min-w-[150px]">
+          <div className="w-[calc10%-1rem)] min-w-[150px]">
             <InputCP inputValue={soldPpw} setInputValue={setSoldPpw} variant="number" inputName="Sold PPW" />
           </div>
-          <div className="w-[calc25%-1rem)] min-w-[150px]">
+          <div className="w-[calc10%-1rem)] min-w-[150px]">
             <InputCP inputValue={ppwCap} setInputValue={setPpwCap} variant="number" inputName="PPW Cap" />
           </div>
           {financeWith === "Purchase" && hicAState && hicBState && (
             <>
-              <div className="w-[calc25%-1rem)] min-w-[150px]">
+              <div className="w-[calc10%-1rem)] min-w-[150px]">
                 <InputCP inputValue={Number(qualifiedFor)} setInputValue={setQualifiedFor} variant="number" inputName="Qualified For" />
               </div>
             </>)}
