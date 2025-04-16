@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { usePPWContext } from '../../contexts/ppwContext';
 import { Button, Typography, Popover, PopoverHandler, PopoverContent} from '@material-tailwind/react';
-import ErrorIcon from '@mui/icons-material/error'
+import ErrorIcon from '@mui/icons-material/Error'
 
 const Resolutions = () => {
     const { newEpc,
